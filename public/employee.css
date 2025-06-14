@@ -1,0 +1,301 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fdf3e0;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 140px;
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  position: relative;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  background-color: #3b82f6;
+  padding: 6px;
+  border-radius: 9999px;
+  color: white;
+}
+
+.menu .menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 10px;
+  border-radius: 6px;
+  color: #374151;
+  text-decoration: none;
+  margin-bottom: 4px;
+}
+
+.menu .menu-item:hover {
+  background-color: #f3f4f6;
+}
+
+.menu .active {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.logout {
+  position: absolute;
+  bottom: 1rem;
+  width: calc(100% - 2rem);
+}
+
+.logout button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  background: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+
+/* Main content */
+.main {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.main-header h1 {
+  font-size: 27px;
+  font-weight: bold;
+  color: #333;
+}
+
+.buttons .btn {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.buttons .btn:hover {
+  opacity: 0.9;
+    font-size: 17px;
+
+}
+
+.buttons .edit {
+  background: #555;
+}
+
+.buttons .delete {
+  background: #e63946;
+}
+
+.buttons .add {
+  background: #f97316;
+}
+
+/* Search */
+.search-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: white;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 0.7rem;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+/* Table */
+.table-section {
+  background: white;
+  border-radius: 8px;
+  overflow-x: auto;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f9fafb;
+  color: #555;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+th, td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  white-space: nowrap;
+}
+
+tbody tr:hover {
+  background: #f3f4f6;
+}
+
+td a {
+  color: #f97316;
+  text-decoration: none;
+}
+
+td a:hover {
+  color: #c2410c;
+}
+
+
+
+/* Modal Background */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 20px;
+  width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Heading */
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+.search-container input {
+  padding: 8px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+
+/* Form Styling */
+.form-group label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+  color: #444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f4f4f4;
+  font-size: 14px;
+}
+
+/* Button Area */
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+/* Confirm and Cancel Buttons */
+.confirm-btn,
+.cancel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.confirm-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/adminstyle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/umd/lucide.min.css" />
+</head>
+
+<body class="bg-orange-50">
+
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i data-lucide="users"></i>
+                </div>
+                <span>Admin Panel</span>
+            </div>
+            <nav class="menu">
+                <a href="#" class="menu-item active"><i data-lucide="users"></i>Dashboard</a>
+                <form action="/admin/employee" method="get">
+                    <a href="/admin/employee" class="menu-item"><i data-lucide="users"></i>Employees</a>
+                </form>
+                <a href="/admin/task" class="menu-item"><i data-lucide="message-square"></i>Tasks</a>
+                <a href="/admin/meeting" class="menu-item"><i data-lucide="calendar"></i>Meetings</a>
+                <a href="/admin/leave" class="menu-item"><i data-lucide="calendar"></i>Leave Requests</a>
+            </nav>
+            <div class="logout">
+                <button><i data-lucide="log-out"></i> Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <h1>Dashboard</h1>
+                <div class="user-actions">
+                    <button><i data-lucide="settings"></i></button>
+                    <div class="user-avatar">A</div>
+                </div>
+            </header>
+
+            <section class="overview">
+                <h2>Quick Overview</h2>
+                <div class="cards">
+                    <div class="card">
+                        <div>
+                            <p>Total Employees</p>
+                            <h3>120</h3>
+                        </div>
+                        <div class="icon"><i data-lucide="users"></i></div>
+                    </div>
+                    <div class="card orange">
+                        <div>
+                            <p>Pending Tasks</p>
+                            <h3>35</h3>
+                        </div>
+                        <div class="icon"><i data-lucide="message-square"></i></div>
+                    </div>
+                    <div class="card red">
+                        <div>
+                            <p>Pending Leave Requests</p>
+                            <h3>5</h3>
+                        </div>
+                        <div class="icon"><i data-lucide="bell"></i></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="updates">
+                <div class="section-header">
+                    <h2>Important Updates</h2>
+                    <button class="post-update"><i data-lucide="bell"></i> Post Update</button>
+                </div>
+                <div class="cards">
+                    <div class="card large">
+                        <div class="card-header">
+                            <h3>Company-Wide Meeting</h3>
+                            <span class="tag urgent">Urgent</span>
+                        </div>
+                        <p>All employees are required to attend the company-wide meeting on July 15th at 2 PM. Please
+                            check your calendars for the meeting link.</p>
+                        <p class="date">Posted: July 10, 2024</p>
+                    </div>
+                    <div class="card large">
+                        <div class="card-header">
+                            <h3>New Project Kickoff</h3>
+                            <span class="tag manager">For Managers</span>
+                        </div>
+                        <p>The kickoff meeting for Project Phoenix will be held on July 18th at 10 AM. Managers and
+                            designers, please prepare your presentations.</p>
+                        <p class="date">Posted: July 9, 2024</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="reminders">
+                <div class="section-header">
+                    <h2>Admin-Only Reminders</h2>
+                    <button class="reminder-btn"><i data-lucide="bell"></i> Add Reminder</button>
+                </div>
+                <div class="cards">
+                    <div class="card left-red">
+                        <div class="reminder-title"><i class="dot red"></i> Urgent: Review Q3 Budget</div>
+                        <p class="date">Deadline: July 20th</p>
+                    </div>
+                    <div class="card left-yellow">
+                        <div class="reminder-title"><i class="dot yellow"></i> Medium: Schedule Team Building</div>
+                        <p class="date">Plan for August</p>
+                    </div>
+                    <div class="card left-green">
+                        <div class="reminder-title"><i class="dot green"></i> Low: Order New Office Supplies</div>
+                        <p class="date">By end of week</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

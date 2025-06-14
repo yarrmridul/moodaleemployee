@@ -1,0 +1,23 @@
+{
+
+  "engines": {
+    "node": "22.13.1"
+  },
+  "name": "moodale-emplyee",
+  "version": "1.0.0",
+  "description": "a webseite for employees",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mridul",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1",
+    "nodemailer": "^7.0.3"
+  }
+}
+
+

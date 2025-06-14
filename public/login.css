@@ -1,0 +1,118 @@
+:root {
+  --primary-color: #3d98f4;
+}
+body {
+  font-family: 'Manrope', "Noto Sans", sans-serif;
+}
+.logosize {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+}
+
+
+
+.form-input {
+  display: block;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: none;
+  background-color: #000000;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #000; /* <-- Black text */
+}
+.form-input::placeholder {
+  color: #6e96be;
+}
+
+
+.form-input:focus {
+  border: none;
+  outline: 0;
+  box-shadow: none;
+}
+.btn {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  color: #fff;
+}
+.btn-primary {
+  background-color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: normal;
+  letter-spacing: 0.015em;
+}
+.btn-secondary {
+  background-color: #283039;
+  font-size: 0.875rem;
+  font-weight: bold;
+  line-height: normal;
+  letter-spacing: 0.015em;
+}
+
+/* Custom animation and utility classes */
+.animate-blob {
+  animation: blob 10s infinite;
+}
+.animation-delay-2000 {
+  animation-delay: -2s;
+}
+.animation-delay-3000 {
+  animation-delay: -3s;
+}
+.animation-delay-4000 {
+  animation-delay: -4s;
+}
+.animation-delay-5000 {
+  animation-delay: -5s;
+}
+@keyframes blob {
+  0%, 100% {
+    transform: scale(1) translate(0px, 0px) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.2) translate(40px, -60px) rotate(45deg);
+  }
+  50% {
+    transform: scale(0.8) translate(-30px, 30px) rotate(90deg);
+  }
+  75% {
+    transform: scale(1.1) translate(20px, -40px) rotate(135deg);
+  }
+}
+.animate-pulse {
+  animation: pulse 8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.2; transform: scale(0.95); }
+  50% { opacity: 0.4; transform: scale(1.05); }
+}
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+.animate-float {
+  animation: float 12s infinite ease-in-out;
+}
+.animate-float-fast {
+  animation: float 8s infinite ease-in-out;
+}
+@keyframes float {
+  0%, 100% {
+    transform: var(--tw-transform) translateY(0px) translateX(0px);
+  }
+  25% {
+      transform: var(--tw-transform) translateY(-30px) translateX(20px) ;
+  }
+  50% {
+      transform: var(--tw-transform) translateY(20px) translateX(-15px);
+  }
+  75% {
+      transform: var(--tw-transform) translateY(-15px) translateX(30px);
+  }
+}

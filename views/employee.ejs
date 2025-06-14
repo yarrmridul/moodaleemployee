@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Employee Management</title>
+  <link rel="stylesheet" href="/employee.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/umd/lucide.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i data-lucide="users"></i>
+        </div>
+        <span>Admin Panel</span>
+      </div>
+      <nav class="menu">
+        <a href="/admin" class="menu-item"><i data-lucide="users"></i>Dashboard</a>
+        <a href="/admin/employee" class="menu-item active"><i data-lucide="users"></i>Employees</a>
+        <a href="/admin/task" class="menu-item"><i data-lucide="message-square"></i>Tasks</a>
+        <a href="/admin/meeting" class="menu-item"><i data-lucide="calendar"></i>Meetings</a>
+        <a href="/admin/leave" class="menu-item"><i data-lucide="calendar"></i>Leave Requests</a>
+      </nav>
+      <div class="logout">
+        <button><i data-lucide="log-out"></i> Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="main-header">
+        <h1>Employee Management</h1>
+        <div class="buttons">
+          <button onclick="openEditDialog()" class="edit-btn btn edit"><i class="fas fa-edit"></i>Edit Employee</button>
+          <button onclick="openDeleteDialog()" class="btn delete"><i class="fas fa-trash"></i> Delete Employee</button>
+
+          <button onclick="openDialog()" class="add-btn btn add"><i class="fas fa-plus"></i> Add Employee</button>
+        </div>
+      </header>
+
+      <div class="search-container">
+        <input type="text" placeholder="Search by name, ID, or email" id="searchInput" />
+      </div>
+
+      <section class="table-section">
+        <table>
+          <thead>
+            <tr>
+              <th>Employee ID</th>
+              <th>Name</th>
+              <th>Role Assigned</th>
+              <th>Department</th>
+              <th>Contact Number</th>
+              <th>Email ID</th>
+              <th>Password</th>
+              <th>Joining Date</th>
+              <th>Contract End</th>
+              <th>Comment</th>
+              <th>Detail</th>
+              <th>mail Send</th>
+            </tr>
+          </thead>
+          <tbody id="employeeTableBody">
+            <% for(let user of results){ %>
+              <tr>
+
+                <td>
+                  25MD00<%= user.id %>
+                </td>
+                <td>
+                  <%= user.name %>
+                </td>
+                <td>
+                  <%= user.role %>
+                </td>
+                <td>
+                  <%= user.department %>
+                </td>
+                <td>
+                  <%= user.contact_number %>
+                </td>
+                <td>
+                  <%= user.email %>
+                </td>
+                <td>
+                  <%= user.password %>
+                </td>
+                <td>
+                  <%= new Date(user.joining_date).toLocaleDateString('en-GB', { day: '2-digit' , month: 'short' ,
+                    year: 'numeric' }) %>
+                </td>
+                <td>
+                  <% if (user.contract_end) { %>
+                    <%= new Date(user.contract_end).toLocaleDateString('en-GB', { day: '2-digit' , month: 'short' ,
+                      year: 'numeric' }) %>
+                      <% } else { %>
+                        -
+                        <% } %>
+                </td>
+
+
+
+                <td>
+                  <%= user.comments %>
+                </td>
+                <td>
+                  <button class="detail-btn" onclick="openDialog()">View Details</button>
+                </td>
+                <td>
+                  <button onclick="sendMailToEmployee('<%= user.email %>')" class="send-btn">Send Mail</button>
+                </td>
+
+              </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+  <!-- Add Employee Button -->
+  <button onclick="openDialog()" class="add-btn">Add Employee</button>
+
+  <!-- Modal Popup -->
+  <div id="employeeModal" class="modal">
+    <div class="modal-content">
+      <h2>Add New Employee</h2>
+      <form action="/admin/employee" method="post">
+        <div class="form-group">
+          <label>Name *</label>
+          <input type="text" name="name" required>
+
+          <label>Contact Number *</label>
+          <input type="text" name="contact_number" required>
+
+          <label>Email *</label>
+          <input type="email" name="email" required>
+
+          <label>Password *</label>
+          <input type="password" name="password" required>
+
+          <label>Joining Date *</label>
+          <input type="date" name="joining_date" required>
+
+          <label>Department</label>
+          <input type="text" name="department">
+
+          <label>Role</label>
+          <input type="text" name="role">
+
+          <label>Contract End Date</label>
+          <input type="date" name="contract_end">
+
+          <label>City</label>
+          <input type="text" name="city">
+
+          <label>Gender</label>
+          <select name="gender">
+            <option value="">-- Select --</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+
+          <label>Date of Birth</label>
+          <input type="date" name="date_of_birth">
+
+          <label>Address</label>
+          <textarea name="address"></textarea>
+
+          <label>Profile Picture (text)</label>
+          <input type="text" name="profile_picture" placeholder="Image filename or URL">
+
+          <label>Comments</label>
+          <textarea name="comments"></textarea>
+        </div>
+
+        <div class="modal-buttons">
+          <button type="submit" class="confirm-btn">Confirm</button>
+          <button type="button" onclick="closeDialog()" class="cancel-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="editEmployeeModal" class="modal">
+    <div class="modal-content">
+      <h2>Edit Employee</h2>
+      <form action="/admin/employee/update" method="POST" id="editForm">
+        <div class="form-group">
+          <label>Search by Email or ID *</label>
+          <input type="text" id="edit-search" placeholder="Enter Email or ID" required />
+
+          <button type="button" onclick="fetchEmployeeData()" style="margin-top: 10px;">Fetch Details</button>
+
+          <input type="hidden" name="id" id="edit-id">
+
+          <label>Name *</label>
+          <input type="text" name="name" id="edit-name" required>
+
+          <label>Contact Number *</label>
+          <input type="text" name="contact_number" id="edit-contact_number" required>
+
+          <label>Email *</label>
+          <input type="email" name="email" id="edit-email" required>
+
+          <label>Password *</label>
+          <input type="password" name="password" id="edit-password" required>
+
+          <label>Joining Date *</label>
+          <input type="date" name="joining_date" id="edit-joining_date" required>
+
+          <label>Department</label>
+          <input type="text" name="department" id="edit-department">
+
+          <label>Role</label>
+          <input type="text" name="role" id="edit-role">
+
+          <label>Contract End Date</label>
+          <input type="date" name="contract_end" id="edit-contract_end">
+
+          <label>City</label>
+          <input type="text" name="city" id="edit-city">
+
+          <label>Gender</label>
+          <select name="gender" id="edit-gender">
+            <option value="">-- Select --</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+
+          <label>Date of Birth</label>
+          <input type="date" name="date_of_birth" id="edit-date_of_birth">
+
+          <label>Address</label>
+          <textarea name="address" id="edit-address"></textarea>
+
+          <label>Profile Picture (text)</label>
+          <input type="text" name="profile_picture" id="edit-profile_picture">
+
+          <label>Comments</label>
+          <textarea name="comments" id="edit-comments"></textarea>
+        </div>
+
+        <div class="modal-buttons">
+          <button type="submit" class="confirm-btn">Update</button>
+          <button type="button" onclick="closeEditDialog()" class="cancel-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Delete Employee Modal -->
+  <div id="deleteEmployeeModal" class="modal">
+    <div class="modal-content">
+      <h2>Delete Employee</h2>
+
+      <!-- Search input -->
+      <div class="form-group">
+        <label>Search by Email or ID *</label>
+        <input type="text" id="delete-search" placeholder="Enter Email or ID" required onkeyup="filterUserList()">
+        <button type="button" onclick="fetchDeleteEmployeeData()" style="margin-top: 10px;">Fetch Employee</button>
+      </div>
+
+      <!-- User list -->
+      <div id="user-list" style="max-height: 150px; overflow-y: auto; margin-top: 10px;"></div>
+
+      <!-- Fetched info -->
+      <div id="delete-info" style="display: none; margin-top: 20px;">
+        <p><strong>Name:</strong> <span id="delete-name"></span></p>
+        <p><strong>Department:</strong> <span id="delete-department"></span></p>
+        <p><strong>Joining Date:</strong> <span id="delete-joining_date"></span></p>
+        <p><strong>Comment:</strong> <span id="delete-comment"></span></p>
+
+        <form action="/admin/employee/delete" method="POST">
+          <input type="hidden" name="id" id="delete-id">
+          <div class="modal-buttons">
+            <button type="submit" class="confirm-btn" style="background-color: #e74c3c;">Delete</button>
+            <button type="button" onclick="closeDeleteDialog()" class="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let allEmployees = [];
+
+    async function openDeleteDialog() {
+      document.getElementById("deleteEmployeeModal").style.display = "flex";
+      document.getElementById("delete-info").style.display = "none";
+      document.getElementById("delete-search").value = "";
+      document.getElementById("user-list").innerHTML = "Loading...";
+
+      try {
+        const res = await fetch('/admin/employee/all'); // You'll need to create this endpoint
+        allEmployees = await res.json();
+        displayUserList(allEmployees);
+      } catch (err) {
+        document.getElementById("user-list").innerHTML = "Failed to load employees.";
+        console.error(err);
+      }
+    }
+
+    function closeDeleteDialog() {
+      document.getElementById("deleteEmployeeModal").style.display = "none";
+    }
+
+    async function fetchDeleteEmployeeData() {
+      const query = document.getElementById("delete-search").value.trim();
+
+      if (!query) return alert("Please enter an Email or ID");
+
+      try {
+        const res = await fetch(`/admin/employee/fetch?query=${encodeURIComponent(query)}`);
+        const data = await res.json();
+
+        if (!data || !data.id) return alert("No employee found.");
+
+        document.getElementById("delete-id").value = data.id;
+        document.getElementById("delete-name").textContent = data.name || "-";
+        document.getElementById("delete-department").textContent = data.department || "-";
+        document.getElementById("delete-joining_date").textContent = new Date(data.joining_date).toLocaleDateString('en-GB');
+        document.getElementById("delete-comment").textContent = data.comments || "-";
+
+        document.getElementById("delete-info").style.display = "block";
+      } catch (err) {
+        alert("Error fetching employee data.");
+        console.error(err);
+      }
+    }
+
+    function displayUserList(list) {
+      const container = document.getElementById("user-list");
+      container.innerHTML = "";
+
+      if (list.length === 0) {
+        container.innerHTML = "<p>No employees found.</p>";
+        return;
+      }
+
+      list.forEach(emp => {
+        const div = document.createElement("div");
+        div.style.padding = "5px";
+        div.style.cursor = "pointer";
+        div.style.borderBottom = "1px solid #ccc";
+        div.innerHTML = `<strong>${emp.name}</strong> - <small>${emp.email}</small>`;
+        div.onclick = () => {
+          document.getElementById("delete-search").value = emp.email;
+          fetchDeleteEmployeeData();
+        };
+        container.appendChild(div);
+      });
+    }
+
+    function filterUserList() {
+      const query = document.getElementById("delete-search").value.toLowerCase();
+      const filtered = allEmployees.filter(emp =>
+        emp.email.toLowerCase().includes(query) ||
+        emp.name.toLowerCase().includes(query) ||
+        (emp.id && emp.id.toString().includes(query))
+      );
+      displayUserList(filtered);
+    }
+
+    // ESC key close support
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        closeDeleteDialog();
+      }
+    });
+  </script>
+
+
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <script>
+    function openDialog() {
+      document.getElementById("employeeModal").style.display = "flex";
+    }
+
+    function closeDialog() {
+      document.getElementById("employeeModal").style.display = "none";
+    }
+  </script>
+
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const tableBody = document.getElementById("employeeTableBody");
+
+    searchInput.addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+
+      Array.from(tableBody.getElementsByTagName("tr")).forEach((row) => {
+        const cells = row.getElementsByTagName("td");
+        const id = cells[0]?.textContent.toLowerCase();
+        const name = cells[1]?.textContent.toLowerCase();
+        const email = cells[5]?.textContent.toLowerCase();
+
+        if (id.includes(query) || name.includes(query) || email.includes(query)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    });
+  </script>
+  <script>
+    function openEditDialog() {
+      document.getElementById("editEmployeeModal").style.display = "flex";
+    }
+
+    function closeEditDialog() {
+      document.getElementById("editEmployeeModal").style.display = "none";
+    }
+
+    async function fetchEmployeeData() {
+      const searchValue = document.getElementById("edit-search").value;
+
+      if (!searchValue) return alert("Please enter an Email or ID");
+
+      try {
+        const res = await fetch(`/admin/employee/fetch?query=${encodeURIComponent(searchValue)}`);
+        const data = await res.json();
+
+        if (!data || !data.id) return alert("No employee found.");
+
+        document.getElementById("edit-id").value = data.id;
+        document.getElementById("edit-name").value = data.name || "";
+        document.getElementById("edit-contact_number").value = data.contact_number || "";
+        document.getElementById("edit-email").value = data.email || "";
+        document.getElementById("edit-password").value = data.password || "";
+        document.getElementById("edit-joining_date").value = data.joining_date?.split("T")[0] || "";
+        document.getElementById("edit-department").value = data.department || "";
+        document.getElementById("edit-role").value = data.role || "";
+        document.getElementById("edit-contract_end").value = data.contract_end?.split("T")[0] || "";
+        document.getElementById("edit-city").value = data.city || "";
+        document.getElementById("edit-gender").value = data.gender || "";
+        document.getElementById("edit-date_of_birth").value = data.date_of_birth?.split("T")[0] || "";
+        document.getElementById("edit-address").value = data.address || "";
+        document.getElementById("edit-profile_picture").value = data.profile_picture || "";
+        document.getElementById("edit-comments").value = data.comments || "";
+      } catch (err) {
+        alert("Error fetching employee data.");
+        console.error(err);
+      }
+    }
+  </script>
+  <script>
+    async function sendMailToEmployee(email) {
+      fetch(`/admin/employee/send-mail/${email}`, {
+        method: "POST"
+      })
+      .then(res => res.json())
+      .then(data => alert(data.message))
+      .catch(err => alert("Failed to send mail"));
+    }
+  </script>
+
+</body>
+
+</html>
