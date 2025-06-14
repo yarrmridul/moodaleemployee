@@ -50,7 +50,7 @@ app.post("/admin/employee/send-mail/:email", async (req, res) => {
       service: "gmail",
       auth: {
         user: "moodale2020@gmail.com",
-        pass: "xzry lfpr kuzz ohoy" // Use App Passwords, not your actual password
+        pass: process.env.pa // Use App Passwords, not your actual password
       },
     });
 
