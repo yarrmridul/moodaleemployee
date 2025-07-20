@@ -5,12 +5,18 @@ app.use(express.json());
 
 const nodemailer = require("nodemailer");
 
+const cors = require("cors");
+app.use(cors());
+
+
+
+
 app.post("/admin/employee/send-mail/:email", async (req, res) => {
   const employeeEmail = req.params.email;
   try {
-    const [rows] = await connection.promise().query(
-      "SELECT * FROM employeedata WHERE email = ?", [employeeEmail]
-    );
+    const [rows] = await connection
+      .promise()
+      .query("SELECT * FROM employeedata WHERE email = ?", [employeeEmail]);
     if (!rows || rows.length === 0) {
       return res.status(404).json({ message: "Employee not found" });
     }
@@ -24,7 +30,9 @@ app.post("/admin/employee/send-mail/:email", async (req, res) => {
     for (const key in employee) {
       if (
         !ignoreFields.includes(key) &&
-        (employee[key] === null || employee[key] === "" || employee[key] === undefined)
+        (employee[key] === null ||
+          employee[key] === "" ||
+          employee[key] === undefined)
       ) {
         missingFields.push(key);
       }
@@ -32,7 +40,9 @@ app.post("/admin/employee/send-mail/:email", async (req, res) => {
 
     // Don't send if everything's filled
     if (missingFields.length === 0) {
-      return res.status(200).json({ message: "No missing fields. Email not sent." });
+      return res
+        .status(200)
+        .json({ message: "No missing fields. Email not sent." });
     }
 
     // Format all details
@@ -43,14 +53,18 @@ app.post("/admin/employee/send-mail/:email", async (req, res) => {
 
     // Format missing field request
     const missingRequest = missingFields.length
-      ? `We require the following details from your end:\n${missingFields.join(", ")}\n\n`
+      ? `We require the following details from your end:\n${missingFields.join(
+          ", "
+        )}\n\n`
       : "";
 
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 587, // Use TLS
+      secure: false, // MUST be false for port 587
       auth: {
         user: "moodale2020@gmail.com",
-        pass: process.env.pa // Use App Passwords, not your actual password
+        pass: "xzry lfpr kuzz ohoy",
       },
     });
 
@@ -73,15 +87,13 @@ Moodale`,
 
     await transporter.sendMail(mailOptions);
     res.status(200).json({ message: "Mail sent successfully" });
-
   } catch (error) {
     console.error("Error sending mail:", error);
     res.status(500).json({ message: "Failed to send mail" });
   }
 });
 
-
-const port = 3000;
+const port = process.env.PORT || 3000;;
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
@@ -89,13 +101,13 @@ app.use(express.static("public"));
 const path = require("path");
 const mysql = require("mysql2");
 
-const connection = mysql.createConnection({ 
- host: "localhost",
+const connection = mysql.createConnection({
+  host: "localhost",
   user: "root",
   database: "moodale",
   password: "Abnhibhulunga@07",
 });
- 
+console.log("Starting server...");
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
@@ -111,7 +123,7 @@ app.get("/admin", (req, res) => {
 });
 
 app.get("/adminlogin", (req, res) => {
-    res.render("login.ejs");
+  res.render("login.ejs");
 });
 
 app.post("/adminlogin", (req, res) => {
@@ -121,7 +133,7 @@ app.post("/adminlogin", (req, res) => {
   try {
     connection.query(q, [formmail, formpass], (err, results) => {
       if (err) throw err;
-        if (results.length === 0) {
+      if (results.length === 0) {
         return res.send("Invalid credentials"); // no matching user found
       }
       let user = results[0];
@@ -139,10 +151,6 @@ app.post("/adminlogin", (req, res) => {
   }
 });
 
-
-
-
-
 app.get("/admin/task", (req, res) => {
   res.render("task.ejs");
 });
@@ -159,14 +167,23 @@ app.get("/admin/meeting", (req, res) => {
   res.render("meeting.ejs");
 });
 
-
 //to add new employees
 app.post("/admin/employee", (req, res) => {
   let {
-    name, email, contact_number, address,
-    password, joining_date, department, role,
-    contract_end, city, gender, date_of_birth,
-    profile_picture, comments
+    name,
+    email,
+    contact_number,
+    address,
+    password,
+    joining_date,
+    department,
+    role,
+    contract_end,
+    city,
+    gender,
+    date_of_birth,
+    profile_picture,
+    comments,
   } = req.body;
 
   // ✅ Convert empty optional fields to null
@@ -182,18 +199,32 @@ app.post("/admin/employee", (req, res) => {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
-  connection.query(q, [
-    name, email, contact_number, address,
-    password, joining_date, department, role,
-    contract_end, city, gender, date_of_birth,
-    profile_picture, comments
-  ], (err, results) => {
-    if (err) {
-      console.error("Error adding employee:", err);
-      return res.status(500).send("Error adding employee");
+  connection.query(
+    q,
+    [
+      name,
+      email,
+      contact_number,
+      address,
+      password,
+      joining_date,
+      department,
+      role,
+      contract_end,
+      city,
+      gender,
+      date_of_birth,
+      profile_picture,
+      comments,
+    ],
+    (err, results) => {
+      if (err) {
+        console.error("Error adding employee:", err);
+        return res.status(500).send("Error adding employee");
+      }
+      res.redirect("/admin/employee");
     }
-    res.redirect("/admin/employee");
-  });
+  );
 });
 
 //show all employees
@@ -206,24 +237,38 @@ app.get("/admin/employee", (req, res) => {
     }
     console.log("Query Results:", results);
 
-res.render("employee.ejs", { results }); // ✅ even an empty array avoids the crash
+    res.render("employee.ejs", { results }); // ✅ even an empty array avoids the crash
   });
 });
 
-app.get('/admin/employee/fetch', async (req, res) => {
+app.get("/admin/employee/fetch", async (req, res) => {
   const query = req.query.query;
-  const [rows] = await connection.promise().query(
-    "SELECT * FROM employeedata WHERE email = ? OR id = ?", [query, query]
-  );
+  const [rows] = await connection
+    .promise()
+    .query("SELECT * FROM employeedata WHERE email = ? OR id = ?", [
+      query,
+      query,
+    ]);
   res.json(rows[0] || {});
 });
 
-
-app.post('/admin/employee/update', async (req, res) => {
+app.post("/admin/employee/update", async (req, res) => {
   let {
-    id, name, contact_number, email, password, joining_date,
-    department, role, contract_end, city, gender, date_of_birth,
-    address, profile_picture, comments
+    id,
+    name,
+    contact_number,
+    email,
+    password,
+    joining_date,
+    department,
+    role,
+    contract_end,
+    city,
+    gender,
+    date_of_birth,
+    address,
+    profile_picture,
+    comments,
   } = req.body;
 
   // Convert empty date fields to null
@@ -234,20 +279,36 @@ app.post('/admin/employee/update', async (req, res) => {
   await connection.promise().query(
     `UPDATE employeedata SET name=?, contact_number=?, email=?, password=?, joining_date=?,
      department=?, role=?, contract_end=?, city=?, gender=?, date_of_birth=?, address=?, profile_picture=?, comments=? WHERE id=?`,
-    [name, contact_number, email, password, joining_date,
-     department, role, contract_end, city, gender, date_of_birth, address, profile_picture, comments, id]
+    [
+      name,
+      contact_number,
+      email,
+      password,
+      joining_date,
+      department,
+      role,
+      contract_end,
+      city,
+      gender,
+      date_of_birth,
+      address,
+      profile_picture,
+      comments,
+      id,
+    ]
   );
 
   res.redirect("/admin/employee");
 });
-
 
 app.post("/admin/employee/delete", async (req, res) => {
   const id = req.body.id;
   if (!id) return res.status(400).send("ID is required");
 
   try {
-    const [result] = await connection.promise().query("DELETE FROM employeedata WHERE id = ?", [id]);
+    const [result] = await connection
+      .promise()
+      .query("DELETE FROM employeedata WHERE id = ?", [id]);
 
     if (result.affectedRows === 0) {
       return res.status(404).send("Employee not found");
@@ -262,7 +323,9 @@ app.post("/admin/employee/delete", async (req, res) => {
 
 app.get("/admin/employee/all", async (req, res) => {
   try {
-    const [rows] = await connection.promise().query("SELECT id, name, email FROM employeedata");
+    const [rows] = await connection
+      .promise()
+      .query("SELECT id, name, email FROM employeedata");
     res.json(rows);
   } catch (err) {
     console.error("Error fetching all employees:", err);
