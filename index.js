@@ -95,7 +95,17 @@ Moodale`,
   }
 });
 
-const port = process.env.PORT || 3306;;
+//const port = process.env.PORT || 3306;;
+const port = process.env.PORT;
+if (!port) {
+  console.error("❌ PORT environment variable is not set");
+  process.exit(1);
+}
+
+app.listen(port, () => {
+  console.log(`✅ Server is running on http://localhost:${port}`);
+});
+
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
@@ -113,6 +123,17 @@ const connection = mysql.createConnection({
 
 
 });
+
+connection.connect((err) => {
+  if (err) {
+    console.error("❌ MySQL Connection Error:", err.message);
+    process.exit(1); // Prevent server from starting
+  } else {
+    console.log("✅ MySQL Connected Successfully");
+  }
+});
+
+
 console.log("Starting server...");
 
 app.listen(port, () => {
