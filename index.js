@@ -1,3 +1,9 @@
+console.log("🔧 Starting server setup...");
+console.log("Loaded ENV variables:");
+console.log("DB_HOST:", process.env.DB_HOST);
+console.log("SMTP_USER:", process.env.SMTP_USER);
+console.log("PORT:", process.env.PORT);
+
 const express = require("express");
 require("dotenv").config();
 //https://freedb.tech/dashboard/
