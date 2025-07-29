@@ -16,9 +16,6 @@ const nodemailer = require("nodemailer");
 const cors = require("cors");
 app.use(cors());
 
-
-
-
 app.post("/admin/employee/send-mail/:email", async (req, res) => {
   const employeeEmail = req.params.email;
   try {
@@ -71,8 +68,8 @@ app.post("/admin/employee/send-mail/:email", async (req, res) => {
       port: 587, // Use TLS
       secure: false, // MUST be false for port 587
       auth: {
-user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
 
@@ -121,12 +118,14 @@ const path = require("path");
 const mysql = require("mysql2");
 
 const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
+  host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-    port: process.env.DB_PORT
-
+  port: process.env.DB_PORT,
+  ssl: {
+    rejectUnauthorized: true, // Aiven requires this
+  },
 
 });
 
@@ -139,10 +138,7 @@ connection.connect((err) => {
   }
 });
 
-
 console.log("Starting server...");
-
-
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
