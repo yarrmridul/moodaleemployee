@@ -4,6 +4,10 @@ console.log("DB_HOST:", process.env.DB_HOST);
 console.log("SMTP_USER:", process.env.SMTP_USER);
 console.log("PORT:", process.env.PORT);
 
+const fs = require("fs");
+const path = require("path");
+
+
 const express = require("express");
 require("dotenv").config();
 //https://freedb.tech/dashboard/
@@ -114,7 +118,6 @@ app.set("view engine", "ejs");
 
 app.set("views", __dirname + "/views");
 app.use(express.static("public"));
-const path = require("path");
 const mysql = require("mysql2");
 
 const connection = mysql.createConnection({
