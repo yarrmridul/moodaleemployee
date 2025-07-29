@@ -1,2 +1,5 @@
 .env
 node_modules/
+
+testingnotadd.css
+testing.ejs
