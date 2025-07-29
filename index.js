@@ -136,9 +136,6 @@ connection.connect((err) => {
 
 console.log("Starting server...");
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
 
 
 app.get("/", (req, res) => {
