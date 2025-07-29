@@ -65,8 +65,8 @@ app.post("/admin/employee/send-mail/:email", async (req, res) => {
       port: 587, // Use TLS
       secure: false, // MUST be false for port 587
       auth: {
-        user: "moodale2020@gmail.com",
-        pass: "xzry lfpr kuzz ohoy",
+user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
       },
     });
 
