@@ -124,6 +124,7 @@ const connection = mysql.createConnection({
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
   ssl: {
+        ca: fs.readFileSync(path.join(__dirname, "certs", "ca.pem")), // <-- ADD THIS
     rejectUnauthorized: true, // Aiven requires this
   },
 
