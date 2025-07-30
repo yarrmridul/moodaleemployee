@@ -102,7 +102,10 @@ Moodale`,
   }
 });
 
-//const port = process.env.PORT || 3306;;
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.set("views", __dirname + "/views");
+
 const port = process.env.PORT;
 if (!port) {
   console.error("❌ PORT environment variable is not set");
@@ -113,11 +116,6 @@ app.listen(port, () => {
   console.log(`✅ Server is running on http://localhost:${port}`);
 });
 
-app.use(express.static("public"));
-app.set("view engine", "ejs");
-
-app.set("views", __dirname + "/views");
-app.use(express.static("public"));
 const mysql = require("mysql2");
 
 const connection = mysql.createConnection({
@@ -156,6 +154,7 @@ app.get("/adminlogin", (req, res) => {
   res.render("login.ejs");
 });
 
+
 app.post("/adminlogin", (req, res) => {
   const formmail = req.body.email;
   const formpass = req.body.password;
@@ -180,6 +179,65 @@ app.post("/adminlogin", (req, res) => {
     res.send("An error occurred during login. Please try again later.");
   }
 });
+
+
+app.get("/emplogin", (req, res) => {
+  res.render("elogin.ejs");
+});
+
+app.post("/emplogin", (req, res) => {
+  const formmail = req.body.email;
+  const formpass = req.body.password;
+
+  const q = "SELECT * FROM employeedata WHERE email = ? AND password = ?";
+  try {
+    connection.query(q, [formmail, formpass], (err, results) => {
+      if (err) throw err;
+      if (results.length === 0) {
+        return res.send("Invalid credentials");
+      }
+
+      const user = results[0];
+      const employeeName = user.name;
+
+      const updates = [
+        {
+          title: "Company-Wide Meeting",
+          tag: "Urgent",
+          description: "Meeting on July 15 at 2 PM.",
+          date: "July 10, 2024"
+        },
+        {
+          title: "New Project Kickoff",
+          tag: "For Managers",
+          description: "Phoenix kickoff July 18, 10 AM.",
+          date: "July 9, 2024"
+        }
+      ];
+
+      const tasks = [
+        {
+          name: "Website Redesign",
+          client: "Acme Corp",
+          assigned: employeeName,
+          details: "Finalize mockups & gather feedback",
+          status: "In Progress",
+          deadline: "2024-08-15"
+        }
+      ];
+
+      res.render("empindex.ejs", {
+        employeeName,
+        updates,
+        tasks
+      });
+    });
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.send("An error occurred during login. Please try again later.");
+  }
+});
+
 
 app.get("/admin/task", (req, res) => {
   res.render("task.ejs");

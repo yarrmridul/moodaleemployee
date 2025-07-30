@@ -1,0 +1,182 @@
+/* employer-dashboard.css */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #fef7ee;
+  color: #1a1a1a;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background-color: #1f1f1f;
+  color: white;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.branding {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  color: orange;
+}
+
+.panel-title {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #ccc;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: white;
+  margin: 0.8rem 0;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  background-color: orange;
+  color: black;
+}
+
+.logout-btn {
+  margin-top: auto;
+  padding: 0.6rem;
+  border: none;
+  background: crimson;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  background: #fffaf3;
+}
+
+.dashboard-header h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.updates h3,
+.tasks h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.update-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.update-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.update-tag {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.update-tag.urgent {
+  background: red;
+  color: white;
+}
+
+.update-tag.for-managers {
+  background: #0077cc;
+  color: white;
+}
+
+.posted-date {
+  font-size: 0.75rem;
+  color: gray;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.task-search {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.task-table th,
+.task-table td {
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.task-table th {
+  background: #f5f5f5;
+}
+
+.badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  color: white;
+  font-size: 0.75rem;
+}
+
+.badge.in-progress {
+  background: orange;
+}
+
+.badge.completed {
+  background: green;
+}
+
+.badge.pending {
+  background: gray;
+}
+
+.upload-btn,
+.download-btn,
+.comment-btn {
+  padding: 0.4rem 0.7rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.upload-btn {
+  background: #cce5ff;
+}
+
+.download-btn {
+  background: #ffe58f;
+}
+
+.comment-btn {
+  background: #d4f5d4;
+}

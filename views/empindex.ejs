@@ -1,0 +1,88 @@
+<!-- employer-dashboard.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employer Panel | Dashboard</title>
+  <link rel="stylesheet" href="/css/employer-dashboard.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/empindex.css" />
+
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="branding">Moodale</div>
+      <div class="panel-title">Employee Panel</div>
+      <nav class="nav-menu">
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">Tasks</a>
+        <a href="#">Meetings</a>
+        <a href="#">Leave Requests</a>
+      </nav>
+      <button class="logout-btn">Logout</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="dashboard-header">
+        <h2>Hi, <%= employeeName %></h2>
+      </header>
+
+      <!-- Important Updates Section -->
+      <section class="updates">
+        <h3>Important Updates</h3>
+        <div class="update-grid">
+          <% updates.forEach(update => { %>
+            <div class="update-card">
+              <div class="update-tag <%= update.tag.toLowerCase() %>"><%= update.tag %></div>
+              <h4><%= update.title %></h4>
+              <p><%= update.description %></p>
+              <span class="posted-date">Posted: <%= update.date %></span>
+            </div>
+          <% }) %>
+        </div>
+      </section>
+
+      <!-- Task Table Section -->
+      <section class="tasks">
+        <h3>Your Tasks</h3>
+        <input type="text" placeholder="Search tasks..." class="task-search" />
+        <table class="task-table">
+          <thead>
+            <tr>
+              <th>Task Name</th>
+              <th>Client</th>
+              <th>Assigned</th>
+              <th>Details</th>
+              <th>Status</th>
+              <th>Deadline</th>
+              <th>Upload Docs</th>
+              <th>Task Report</th>
+              <th>Comments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% tasks.forEach(task => { %>
+              <tr>
+                <td><%= task.name %></td>
+                <td><%= task.client %></td>
+                <td><%= task.assigned %></td>
+                <td><%= task.details %></td>
+                <td><span class="badge <%= task.status.toLowerCase().replace(' ', '-') %>"><%= task.status %></span></td>
+                <td><%= task.deadline %></td>
+                <td><button class="upload-btn">Upload</button></td>
+                <td><button class="download-btn">Download</button></td>
+                <td><button class="comment-btn">Add</button></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
