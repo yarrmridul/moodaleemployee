@@ -1,0 +1,82 @@
+<!-- employer-leaves.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Panel | Leave Requests</title>
+  <link rel="stylesheet" href="/empleave.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="branding">Moodale</div>
+      <div class="panel-title">Employee Panel</div>
+      <nav class="nav-menu">
+        <a href="/employee/dashboard">Dashboard</a>
+        <a href="/employee/tasks">Tasks</a>
+        <a href="/employee/meetings">Meetings</a>
+        <a href="#" class="active">Leave Requests</a>
+      </nav>
+      <button class="logout-btn">Logout</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="dashboard-header">
+        <h2>Leave Requests</h2>
+      </header>
+
+      <section class="leave-form-section">
+        <h3>Apply for Leave</h3>
+        <form action="/employee/apply-leave" method="POST" class="leave-form">
+          <label for="start">Start Date:</label>
+          <input type="date" id="start" name="start" required />
+
+          <label for="end">End Date:</label>
+          <input type="date" id="end" name="end" required />
+
+          <label for="type">Leave Type:</label>
+          <select id="type" name="type" required>
+            <option value="Casual">Casual</option>
+            <option value="Sick">Sick</option>
+            <option value="Paid">Paid</option>
+            <option value="Unpaid">Unpaid</option>
+          </select>
+
+          <label for="reason">Reason:</label>
+          <textarea id="reason" name="reason" rows="3" required></textarea>
+
+          <button type="submit" class="submit-btn">Submit Leave Request</button>
+        </form>
+      </section>
+
+      <section class="leave-history">
+        <h3>Your Leave History</h3>
+        <table class="leave-table">
+          <thead>
+            <tr>
+              <th>Date Range</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Submitted On</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% leaves.forEach(leave => { %>
+              <tr>
+                <td><%= leave.start %> to <%= leave.end %></td>
+                <td><%= leave.type %></td>
+                <td><span class="badge <%= leave.status.toLowerCase() %>"><%= leave.status %></span></td>
+                <td><%= leave.submitted %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

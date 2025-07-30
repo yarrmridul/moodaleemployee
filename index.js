@@ -7,7 +7,6 @@ console.log("PORT:", process.env.PORT);
 const fs = require("fs");
 const path = require("path");
 
-
 const express = require("express");
 require("dotenv").config();
 //https://freedb.tech/dashboard/
@@ -125,10 +124,9 @@ const connection = mysql.createConnection({
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
   ssl: {
-        ca: fs.readFileSync(path.join(__dirname, "certs", "ca.pem")), // <-- ADD THIS
+    ca: fs.readFileSync(path.join(__dirname, "certs", "ca.pem")), // <-- ADD THIS
     rejectUnauthorized: true, // Aiven requires this
   },
-
 });
 
 connection.connect((err) => {
@@ -153,7 +151,6 @@ app.get("/admin", (req, res) => {
 app.get("/adminlogin", (req, res) => {
   res.render("login.ejs");
 });
-
 
 app.post("/adminlogin", (req, res) => {
   const formmail = req.body.email;
@@ -180,7 +177,6 @@ app.post("/adminlogin", (req, res) => {
   }
 });
 
-
 app.get("/emplogin", (req, res) => {
   res.render("elogin.ejs");
 });
@@ -205,14 +201,14 @@ app.post("/emplogin", (req, res) => {
           title: "Company-Wide Meeting",
           tag: "Urgent",
           description: "Meeting on July 15 at 2 PM.",
-          date: "July 10, 2024"
+          date: "July 10, 2024",
         },
         {
           title: "New Project Kickoff",
           tag: "For Managers",
           description: "Phoenix kickoff July 18, 10 AM.",
-          date: "July 9, 2024"
-        }
+          date: "July 9, 2024",
+        },
       ];
 
       const tasks = [
@@ -222,14 +218,14 @@ app.post("/emplogin", (req, res) => {
           assigned: employeeName,
           details: "Finalize mockups & gather feedback",
           status: "In Progress",
-          deadline: "2024-08-15"
-        }
+          deadline: "2024-08-15",
+        },
       ];
 
       res.render("empindex.ejs", {
         employeeName,
         updates,
-        tasks
+        tasks,
       });
     });
   } catch (error) {
@@ -238,6 +234,47 @@ app.post("/emplogin", (req, res) => {
   }
 });
 
+app.get("/emp/meeting", (req, res) => {
+  res.render("empmeeting.ejs", {
+    meetings: [
+      {
+        title: "Marketing Sync-up",
+        description: "Discuss Q3 strategy and campaigns.",
+        date: "2025-08-03",
+        time: "11:00 AM",
+        link: "https://zoom.com/j/123456",
+      },
+      {
+        title: "Client Review",
+        description: "Review deliverables with Acme Corp.",
+        date: "2025-08-05",
+        time: "2:00 PM",
+        link: "https://meet.google.com/xyz-defg-hij",
+      },
+    ],
+  });
+});
+
+app.get("/emp/leave", (req, res) => {
+res.render('empleave.ejs', {
+  leaves: [
+    {
+      start: '2025-08-01',
+      end: '2025-08-03',
+      type: 'Sick',
+      status: 'Approved',
+      submitted: '2025-07-28'
+    },
+    {
+      start: '2025-08-10',
+      end: '2025-08-12',
+      type: 'Casual',
+      status: 'Pending',
+      submitted: '2025-07-29'
+    }
+  ]
+});
+});
 
 app.get("/admin/task", (req, res) => {
   res.render("task.ejs");

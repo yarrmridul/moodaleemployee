@@ -1,0 +1,58 @@
+<!-- employer-meetings.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Panel | Meetings</title>
+  <link rel="stylesheet" href="/empmeeting.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="branding">Moodale</div>
+      <div class="panel-title">Employee Panel</div>
+      <nav class="nav-menu">
+        <a href="/employee/dashboard">Dashboard</a>
+        <a href="/employee/tasks">Tasks</a>
+        <a href="#" class="active">Meetings</a>
+        <a href="/employee/leaves">Leave Requests</a>
+      </nav>
+      <button class="logout-btn">Logout</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="dashboard-header">
+        <h2>Meetings</h2>
+      </header>
+
+      <section class="meeting-section">
+        <div class="meeting-box">
+          <h3>Join a Scheduled Meeting</h3>
+          <p>Use your invite link or Meeting ID to join the session.</p>
+
+          <input type="text" placeholder="Enter Meeting ID or Link" class="meeting-input" />
+          <button class="join-btn">Join Meeting</button>
+        </div>
+
+        <div class="scheduled-meetings">
+          <h4>Upcoming Meetings</h4>
+          <ul>
+            <% meetings.forEach(meeting => { %>
+              <li class="meeting-card">
+                <strong><%= meeting.title %></strong>
+                <p><%= meeting.description %></p>
+                <span><%= meeting.date %> at <%= meeting.time %></span>
+                <a href="<%= meeting.link %>" target="_blank" class="join-link">Join</a>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
