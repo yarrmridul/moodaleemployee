@@ -10,7 +10,9 @@ body {
   color: #f1f1f1;
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
 }
+
 /* ===============================
    🔲 Animated Dot Grid Background
 ================================== */
@@ -29,13 +31,10 @@ body {
   opacity: 0.25;
 }
 @keyframes moveDots {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 120px 120px;
-  }
+  0% { background-position: 0 0; }
+  100% { background-position: 120px 120px; }
 }
+
 /* ===============================
    💫 Floating 3D Glowing Shapes
 ================================== */
@@ -129,17 +128,23 @@ body {
   0% { transform: rotate(0deg) scale(1); }
   100% { transform: rotate(360deg) scale(1.1); }
 }
+
 /* ===============================
    🧱 Layout & Containers
 ================================== */
 .main-wrapper {
   padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 .layout-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  width: 100%;
 }
+
 /* ===============================
    🧭 Header
 ================================== */
@@ -147,7 +152,7 @@ body {
   width: 100%;
   background-color: #111;
   color: #fff;
-  padding: 0.8rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid #444;
   box-shadow: 0 0 10px rgba(255, 106, 0, 0.3);
   z-index: 10;
@@ -162,6 +167,7 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .header:hover {
@@ -190,6 +196,7 @@ body {
   display: flex;
   gap: 0.8rem;
 }
+
 /* ===============================
    🎯 Buttons
 ================================== */
@@ -223,6 +230,7 @@ button.btn-dark:hover {
   background-color: #444;
   transform: scale(1.05);
 }
+
 /* ===============================
    💬 Banner
 ================================== */
@@ -233,10 +241,12 @@ button.btn-dark:hover {
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(255, 106, 0, 0.1);
   margin: 1rem 0;
+  width: 100%;
 }
 .banner-image {
   height: 70px;
   margin-bottom: 0.8rem;
+  max-width: 100%;
 }
 .banner-buttons {
   display: flex;
@@ -244,7 +254,9 @@ button.btn-dark:hover {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 0.8rem;
+  width: 100%;
 }
+
 /* ===============================
    📢 Section Text
 ================================== */
@@ -252,22 +264,26 @@ button.btn-dark:hover {
   text-align: center;
   font-size: 1.3rem;
   margin-top: 2rem;
+  width: 100%;
 }
 .section-desc {
   text-align: center;
   max-width: 600px;
   margin: 0.5rem auto 1rem;
   font-size: 0.95rem;
+  width: 100%;
+  padding: 0 1rem;
 }
 .section-button {
   display: flex;
   justify-content: center;
   margin-bottom: 1.5rem;
+  width: 100%;
 }
+
 /* ===============================
    🦶 Footer
 ================================== */
-/* Footer Full-Width Layout */
 .footer {
   background-color: #0d0d0d;
   color: white;
@@ -309,6 +325,7 @@ button.btn-dark:hover {
   color: #ccc;
   line-height: 1.6;
 }
+
 /* Quick Links */
 .footer-col.quick-links h4 {
   font-size: 1.1rem;
@@ -340,13 +357,7 @@ button.btn-dark:hover {
 .quick-links ul li a:hover {
   color: #ff6a00;
 }
-.fa-square-instagram {
-  transition: transform 0.3s ease;
-}
-.fa-square-instagram:hover {
-  transform: scale(1.2);
-  color: #ff7b1f;
-}
+
 /* Explore & Social */
 .footer-col.external {
   display: flex;
@@ -381,20 +392,8 @@ button.btn-dark:hover {
   transform: scale(1.2);
   color: #ff6a00;
 }
-.footer-col.dev-box {
-  border: 2px dotted rgba(255, 106, 0, 0.5);
-  background: rgba(255, 255, 255, 0.03);
-  padding: 1.2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(255, 106, 0, 0.1);
-}
-.dev-linkedin i,
-.dev-email i {
-  color: #ff6a00;
-  text-shadow: 0 0 4px rgba(255, 106, 0, 0.7);
-}
+
 /* Developer Info */
-/* Neon Box with dotted edge */
 .neon-box {
   background-color: #1a1a1a;
   border: 1px dashed rgba(255, 106, 0, 0.6);
@@ -407,7 +406,6 @@ button.btn-dark:hover {
 .neon-box:hover {
   box-shadow: 0 0 16px rgba(255, 106, 0, 0.4);
 }
-/* Developer Section */
 .footer-dev {
   display: flex;
   flex-direction: column;
@@ -433,28 +431,8 @@ button.btn-dark:hover {
 .dev-email:hover {
   color: #ffa347;
 }
-/* 🔘 Explore Button */
-.client-btn {
-  background-color: #ff6a00;
-  color: white;
-  padding: 0.6rem 1.5rem;
-  font-size: 0.9rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 0 12px rgba(255, 106, 0, 0.6);
-  transition: all 0.3s ease;
-}
-.client-btn:hover {
-  background-color: #ffa347;
-  transform: scale(1.05);
-  box-shadow: 0 0 18px rgba(255, 106, 0, 0.8);
-}
-/* 🔆 Social Icon Row */
+
+/* Social Icons */
 .footer-social-icons {
   display: flex;
   gap: 1rem;
@@ -469,10 +447,10 @@ button.btn-dark:hover {
   color: #ff6a00;
   transform: scale(1.25);
 }
-/* Glowing Icons */
 .glow-icon {
   text-shadow: 0 0 6px rgba(255, 106, 0, 0.8);
 }
+
 /* Footer Bottom */
 .footer-bottom {
   border-top: 1px solid #333;
@@ -481,9 +459,13 @@ button.btn-dark:hover {
   font-size: 0.8rem;
   color: #aaa;
   text-align: center;
+  width: 100%;
 }
 .footer-policies {
   margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .footer-policies a {
   color: #aaa;
@@ -586,7 +568,7 @@ button.btn-dark:hover {
 }
 
 /* Mobile phones */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   /* Background adjustments */
   .bg-dot-grid {
     background-size: 20px 20px;
@@ -638,10 +620,13 @@ button.btn-dark:hover {
   /* Layout adjustments */
   .main-wrapper {
     padding: 0.3rem;
+    width: 100%;
+    overflow-x: hidden;
   }
   
   .layout-container {
     padding: 0 0.3rem;
+    width: 100%;
   }
   
   .header {
@@ -652,6 +637,7 @@ button.btn-dark:hover {
     flex-direction: column;
     align-items: flex-start;
     padding: 0 0.3rem;
+    width: 100%;
   }
   
   .brand-logo {
@@ -670,10 +656,11 @@ button.btn-dark:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 0.3rem;
   }
   
   .nav-links a {
-    margin: 0.2rem 0;
+    margin: 0;
     padding: 0.5rem 0;
     width: 100%;
     display: block;
@@ -695,10 +682,12 @@ button.btn-dark:hover {
   
   .banner {
     padding: 1rem;
+    width: 100%;
   }
   
   .banner-image {
     height: 50px;
+    max-width: 100%;
   }
   
   .banner-buttons {
@@ -731,6 +720,7 @@ button.btn-dark:hover {
   
   .footer {
     padding: 1.2rem 0.3rem 0.5rem;
+    width: 100%;
   }
   
   .footer-main {
@@ -738,11 +728,13 @@ button.btn-dark:hover {
     gap: 1.2rem;
     align-items: center;
     text-align: center;
+    width: 100%;
   }
   
   .footer-col {
     min-width: 100%;
     margin-bottom: 1rem;
+    width: 100%;
   }
   
   .footer-col.external {
@@ -753,6 +745,7 @@ button.btn-dark:hover {
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+    width: 100%;
   }
   
   .quick-links ul {
@@ -776,6 +769,7 @@ button.btn-dark:hover {
   .neon-box {
     padding: 0.8rem;
     font-size: 0.85rem;
+    width: 100%;
   }
   
   .footer-bottom {
@@ -786,6 +780,7 @@ button.btn-dark:hover {
   .footer-policies {
     flex-direction: column;
     gap: 0.3rem;
+    align-items: center;
   }
   
   .footer-policies a {
