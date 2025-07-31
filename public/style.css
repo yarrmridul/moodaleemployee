@@ -4,14 +4,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #0d0d0d;
   color: #f1f1f1;
   line-height: 1.6;
 }
-
 /* ===============================
    🔲 Animated Dot Grid Background
 ================================== */
@@ -29,7 +27,6 @@ body {
   animation: moveDots 100s linear infinite;
   opacity: 0.25;
 }
-
 @keyframes moveDots {
   0% {
     background-position: 0 0;
@@ -38,7 +35,6 @@ body {
     background-position: 120px 120px;
   }
 }
-
 /* ===============================
    💫 Floating 3D Glowing Shapes
 ================================== */
@@ -51,13 +47,11 @@ body {
   z-index: -5;
   pointer-events: none;
 }
-
 .geo-shape {
   position: absolute;
   opacity: 0.15;
   transform-style: preserve-3d;
 }
-
 /* Circle */
 .geo-shape.circle {
   width: 100px;
@@ -69,7 +63,6 @@ body {
   filter: drop-shadow(0 0 15px #ff6a00);
   animation: floatRotate 12s infinite alternate;
 }
-
 /* Triangle */
 .geo-shape.triangle {
   width: 0;
@@ -82,7 +75,6 @@ body {
   filter: drop-shadow(0 0 12px #ffee00);
   animation: floatScale 15s infinite alternate;
 }
-
 /* Square */
 .geo-shape.square {
   width: 70px;
@@ -93,7 +85,6 @@ body {
   filter: drop-shadow(0 0 12px #00ffff);
   animation: floatRotateReverse 10s infinite alternate;
 }
-
 /* Hexagon */
 .geo-shape.hexagon {
   width: 70px;
@@ -120,7 +111,6 @@ body {
   top: 100%;
   border-top: 20px solid #a64dff;
 }
-
 /* Animations */
 @keyframes floatRotate {
   0% { transform: translateY(0) rotate(0deg) scale(1); }
@@ -138,19 +128,16 @@ body {
   0% { transform: rotate(0deg) scale(1); }
   100% { transform: rotate(360deg) scale(1.1); }
 }
-
 /* ===============================
    🧱 Layout & Containers
 ================================== */
 .main-wrapper {
   padding: 2rem;
 }
-
 .layout-container {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 /* ===============================
    🧭 Header
 ================================== */
@@ -175,16 +162,13 @@ body {
   flex-wrap: wrap;
 }
 
-
 .header:hover {
   box-shadow: 0 0 22px rgba(255, 106, 0, 0.6);
 }
-
 .brand-logo {
   height: 50px;
   filter: drop-shadow(0 0 5px rgba(255, 106, 0, 0.6));
 }
-
 .nav-links a {
   margin: 0 1rem;
   color: #e6e6e6;
@@ -194,18 +178,15 @@ body {
 .nav-links a:hover {
   color: #ff6a00;
 }
-
 .nav-and-buttons {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
-
 .login-buttons {
   display: flex;
   gap: 1rem;
 }
-
 /* ===============================
    🎯 Buttons
 ================================== */
@@ -237,7 +218,6 @@ button.btn-dark:hover {
   background-color: #444;
   transform: scale(1.05);
 }
-
 /* ===============================
    💬 Banner
 ================================== */
@@ -259,7 +239,6 @@ button.btn-dark:hover {
   justify-content: center;
   margin-top: 1rem;
 }
-
 /* ===============================
    📢 Section Text
 ================================== */
@@ -278,7 +257,6 @@ button.btn-dark:hover {
   justify-content: center;
   margin-bottom: 2rem;
 }
-
 /* ===============================
    🦶 Footer
 ================================== */
@@ -292,8 +270,6 @@ button.btn-dark:hover {
   width: 100%;
 }
 
-
-
 .footer-main {
   display: flex;
   justify-content: space-between;
@@ -302,14 +278,11 @@ button.btn-dark:hover {
   margin: 0 auto;
   width: 100%;
   gap: 3rem;
-
 }
-
 .footer-col {
   flex: 1 1 0;
   min-width: 250px;
 }
-
 
 /* Moodale Info */
 .footer-col.identity {
@@ -317,20 +290,17 @@ button.btn-dark:hover {
   flex-direction: column;
   gap: 1rem;
 }
-
 .footer-brand {
   font-size: 1.6rem;
   font-weight: bold;
   text-shadow: 0 0 6px rgba(255, 106, 0, 0.8);
   color: #fff;
 }
-
 .footer-desc {
   font-size: 0.95rem;
   color: #ccc;
   line-height: 1.6;
 }
-
 /* Quick Links */
 .footer-col.quick-links h4 {
   font-size: 1.2rem;
@@ -339,32 +309,26 @@ button.btn-dark:hover {
   text-shadow: 0 0 5px rgba(255, 106, 0, 0.6);
     align-items: center;
   text-align: center;
-
 }
-
 .quick-links-columns {
   display: flex;
   justify-content: center;
   gap: 4rem;
   text-align: left;
 }
-
 .quick-links ul {
   list-style: none;
   padding: 0;
 }
-
 .quick-links ul li {
   margin-bottom: 0.5rem;
 }
-
 .quick-links ul li a {
   color: #ccc;
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.3s ease;
 }
-
 .quick-links ul li a:hover {
   color: #ff6a00;
 }
@@ -375,7 +339,6 @@ button.btn-dark:hover {
   transform: scale(1.2);
   color: #ff7b1f;
 }
-
 /* Explore & Social */
 .footer-col.external {
   display: flex;
@@ -383,7 +346,6 @@ button.btn-dark:hover {
   gap: 1rem;
   align-items: flex-start;
 }
-
 .client-btn {
   background-color: #ff6a00;
   padding: 0.6rem 1.4rem;
@@ -396,26 +358,21 @@ button.btn-dark:hover {
   box-shadow: 0 0 15px rgba(255, 106, 0, 0.5);
   transition: background 0.3s ease;
 }
-
 .client-btn:hover {
   background-color: #ffa347;
 }
-
 .footer-social {
   display: flex;
   gap: 1rem;
 }
-
 .footer-social-icon {
   color: white;
   transition: transform 0.3s ease, color 0.3s ease;
 }
-
 .footer-social-icon:hover {
   transform: scale(1.2);
   color: #ff6a00;
 }
-
 .footer-col.dev-box {
   border: 2px dotted rgba(255, 106, 0, 0.5);
   background: rgba(255, 255, 255, 0.03);
@@ -423,13 +380,11 @@ button.btn-dark:hover {
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(255, 106, 0, 0.1);
 }
-
 .dev-linkedin i,
 .dev-email i {
   color: #ff6a00;
   text-shadow: 0 0 4px rgba(255, 106, 0, 0.7);
 }
-
 /* Developer Info */
 /* Neon Box with dotted edge */
 .neon-box {
@@ -441,11 +396,9 @@ button.btn-dark:hover {
   margin-top: 1rem;
   transition: box-shadow 0.3s ease;
 }
-
 .neon-box:hover {
   box-shadow: 0 0 16px rgba(255, 106, 0, 0.4);
 }
-
 /* Developer Section */
 .footer-dev {
   display: flex;
@@ -453,13 +406,11 @@ button.btn-dark:hover {
   gap: 0.6rem;
   font-size: 0.9rem;
 }
-
 .footer-dev p {
   margin: 0;
   color: #ddd;
   font-size: 1rem;
 }
-
 .dev-linkedin,
 .dev-email {
   color: #ff6a00;
@@ -470,7 +421,6 @@ button.btn-dark:hover {
   gap: 0.5rem;
   transition: color 0.3s ease;
 }
-
 .dev-linkedin:hover,
 .dev-email:hover {
   color: #ffa347;
@@ -491,36 +441,30 @@ button.btn-dark:hover {
   box-shadow: 0 0 12px rgba(255, 106, 0, 0.6);
   transition: all 0.3s ease;
 }
-
 .client-btn:hover {
   background-color: #ffa347;
   transform: scale(1.05);
   box-shadow: 0 0 18px rgba(255, 106, 0, 0.8);
 }
-
 /* 🔆 Social Icon Row */
 .footer-social-icons {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
 }
-
 .social-icon {
   font-size: 1.3rem;
   color: white;
   transition: transform 0.3s ease, color 0.3s ease;
 }
-
 .social-icon:hover {
   color: #ff6a00;
   transform: scale(1.25);
 }
-
 /* Glowing Icons */
 .glow-icon {
   text-shadow: 0 0 6px rgba(255, 106, 0, 0.8);
 }
-
 /* Footer Bottom */
 .footer-bottom {
   border-top: 1px solid #333;
@@ -530,46 +474,22 @@ button.btn-dark:hover {
   color: #aaa;
   text-align: center;
 }
-
 .footer-policies {
   margin-top: 0.5rem;
 }
-
 .footer-policies a {
   color: #aaa;
   margin: 0 0.5rem;
   text-decoration: none;
   transition: color 0.3s;
 }
-
 .footer-policies a:hover {
   color: #ff6a00;
 }
-
 .policy-sep {
   color: #555;
 }
-
 /* Responsive */
-@media (max-width: 768px) {
-  .footer-main {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer-col.external,
-  .footer-dev {
-    align-items: center;
-  }
-
-  .quick-links-columns {
-    justify-content: center;
-  }
-}
-
-/* ===============================
-   📱 Responsive
-================================== */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -595,31 +515,82 @@ button.btn-dark:hover {
     flex-direction: column;
   }
 }
-
 /* ===============================
    📱 Improved Mobile Responsiveness
 ================================== */
 @media (max-width: 600px) {
+  /* Background adjustments for mobile */
+  .bg-dot-grid {
+    background-size: 24px 24px; /* Less dense pattern for smaller screens */
+  }
+  
+  .geo-shape.circle {
+    width: 60px;
+    height: 60px;
+    top: 10%;
+    left: 5%;
+  }
+  
+  .geo-shape.triangle {
+    border-left-width: 30px;
+    border-right-width: 30px;
+    border-bottom-width: 54px;
+    top: 30%;
+    left: 70%;
+  }
+  
+  .geo-shape.square {
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    left: 15%;
+  }
+  
+  .geo-shape.hexagon {
+    width: 40px;
+    height: 23px;
+    top: 60%;
+    left: 50%;
+  }
+  
+  .geo-shape.hexagon:before,
+  .geo-shape.hexagon:after {
+    border-left-width: 20px;
+    border-right-width: 20px;
+  }
+  
+  .geo-shape.hexagon:before {
+    border-bottom-width: 12px;
+  }
+  
+  .geo-shape.hexagon:after {
+    border-top-width: 12px;
+  }
+  
+  /* Layout adjustments */
   .main-wrapper,
   .layout-container {
     padding: 0 0.5rem !important;
     max-width: 100vw !important;
   }
-
+  
   .header {
     padding: 0.7rem 0.2rem;
     flex-direction: column !important;
     align-items: flex-start !important;
   }
+  
   .header .layout-container {
     flex-direction: column !important;
     align-items: flex-start !important;
     padding: 0 0.5rem !important;
   }
+  
   .brand-logo {
     height: 36px !important;
     margin-bottom: 0.5rem;
   }
+  
   .nav-and-buttons {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -627,71 +598,123 @@ button.btn-dark:hover {
     width: 100%;
     margin-top: 0.5rem;
   }
+  
   .nav-links {
     flex-direction: column !important;
     gap: 0.5rem !important;
     width: 100%;
   }
+  
   .nav-links a {
     margin: 0.2rem 0 !important;
     font-size: 1rem !important;
     width: 100%;
     display: block;
+    padding: 0.5rem 0;
   }
+  
   .login-buttons {
     flex-direction: column !important;
     gap: 0.5rem !important;
     width: 100%;
   }
+  
   .banner {
     padding: 1rem 0.5rem !important;
   }
+  
   .banner-image {
     height: 60px !important;
   }
+  
   .section-title {
     font-size: 1.1rem !important;
     margin-top: 1.5rem !important;
   }
+  
   .section-desc {
     font-size: 0.95rem !important;
     padding: 0 0.2rem !important;
   }
+  
   .footer {
     padding: 1.5rem 0.5rem 1rem !important;
   }
+  
   .footer-main {
     flex-direction: column !important;
     gap: 1.5rem !important;
     align-items: center !important;
     text-align: center !important;
   }
+  
   .footer-col {
     min-width: unset !important;
     width: 100% !important;
     margin-bottom: 1.2rem !important;
   }
+  
   .quick-links-columns {
     flex-direction: column !important;
     gap: 1rem !important;
     align-items: center !important;
   }
+  
   .footer-social,
   .footer-social-icons {
     justify-content: center !important;
     gap: 0.7rem !important;
   }
+  
   .footer-bottom {
     font-size: 0.8rem !important;
     padding-top: 0.5rem !important;
   }
+  
   .client-btn {
     width: 100% !important;
     font-size: 1rem !important;
     padding: 0.7rem 0 !important;
   }
+  
   .neon-box {
     padding: 0.7rem 0.5rem !important;
     font-size: 0.95rem !important;
+  }
+  
+  /* Button improvements */
+  button.btn-orange, 
+  button.btn-dark {
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    width: 100%;
+    display: block;
+    margin: 0.3rem 0;
+  }
+  
+  .banner-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  
+  .banner-buttons button {
+    width: 100%;
+  }
+  
+  .section-button button {
+    display: block;
+    width: 100%;
+  }
+  
+  /* Touch-friendly spacing */
+  .nav-links a,
+  button,
+  .client-btn,
+  .quick-links ul li a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
