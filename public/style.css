@@ -9,6 +9,7 @@ body {
   background-color: #0d0d0d;
   color: #f1f1f1;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 /* ===============================
    🔲 Animated Dot Grid Background
@@ -132,11 +133,12 @@ body {
    🧱 Layout & Containers
 ================================== */
 .main-wrapper {
-  padding: 2rem;
+  padding: 1rem;
 }
 .layout-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 /* ===============================
    🧭 Header
@@ -145,7 +147,7 @@ body {
   width: 100%;
   background-color: #111;
   color: #fff;
-  padding: 1rem 0;
+  padding: 0.8rem 0;
   border-bottom: 1px solid #444;
   box-shadow: 0 0 10px rgba(255, 106, 0, 0.3);
   z-index: 10;
@@ -155,7 +157,7 @@ body {
 .header .layout-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -166,14 +168,15 @@ body {
   box-shadow: 0 0 22px rgba(255, 106, 0, 0.6);
 }
 .brand-logo {
-  height: 50px;
+  height: 40px;
   filter: drop-shadow(0 0 5px rgba(255, 106, 0, 0.6));
 }
 .nav-links a {
-  margin: 0 1rem;
+  margin: 0 0.8rem;
   color: #e6e6e6;
   text-decoration: none;
   font-weight: 500;
+  font-size: 0.95rem;
 }
 .nav-links a:hover {
   color: #ff6a00;
@@ -181,11 +184,11 @@ body {
 .nav-and-buttons {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 .login-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 /* ===============================
    🎯 Buttons
@@ -193,21 +196,23 @@ body {
 button.btn-orange {
   background-color: #ff6a00;
   color: white;
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(255, 106, 0, 0.4);
   transition: transform 0.2s ease;
+  font-size: 0.9rem;
 }
 button.btn-dark {
   background-color: #333;
   color: white;
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  font-size: 0.9rem;
 }
 button.btn-orange:hover {
   background-color: #ff7b1f;
@@ -223,39 +228,41 @@ button.btn-dark:hover {
 ================================== */
 .banner {
   text-align: center;
-  padding: 2rem;
+  padding: 1.5rem;
   background-color: #1a1a1a;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(255, 106, 0, 0.1);
+  margin: 1rem 0;
 }
 .banner-image {
-  height: 90px;
-  margin-bottom: 1rem;
+  height: 70px;
+  margin-bottom: 0.8rem;
 }
 .banner-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 0.8rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
 }
 /* ===============================
    📢 Section Text
 ================================== */
 .section-title {
   text-align: center;
-  font-size: 1.5rem;
-  margin-top: 3rem;
+  font-size: 1.3rem;
+  margin-top: 2rem;
 }
 .section-desc {
   text-align: center;
   max-width: 600px;
   margin: 0.5rem auto 1rem;
+  font-size: 0.95rem;
 }
 .section-button {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 /* ===============================
    🦶 Footer
@@ -264,10 +271,11 @@ button.btn-dark:hover {
 .footer {
   background-color: #0d0d0d;
   color: white;
-  padding: 3rem 2rem 2rem;
+  padding: 2rem 1rem 1rem;
   box-shadow: 0 -2px 20px rgba(255, 106, 0, 0.3);
   border-top: 1px solid rgba(255, 106, 0, 0.2);
   width: 100%;
+  margin-top: 2rem;
 }
 
 .footer-main {
@@ -277,7 +285,7 @@ button.btn-dark:hover {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
-  gap: 3rem;
+  gap: 2rem;
 }
 .footer-col {
   flex: 1 1 0;
@@ -291,29 +299,29 @@ button.btn-dark:hover {
   gap: 1rem;
 }
 .footer-brand {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: bold;
   text-shadow: 0 0 6px rgba(255, 106, 0, 0.8);
   color: #fff;
 }
 .footer-desc {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #ccc;
   line-height: 1.6;
 }
 /* Quick Links */
 .footer-col.quick-links h4 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
   color: #fff;
   text-shadow: 0 0 5px rgba(255, 106, 0, 0.6);
-    align-items: center;
+  align-items: center;
   text-align: center;
 }
 .quick-links-columns {
   display: flex;
   justify-content: center;
-  gap: 4rem;
+  gap: 2rem;
   text-align: left;
 }
 .quick-links ul {
@@ -321,12 +329,12 @@ button.btn-dark:hover {
   padding: 0;
 }
 .quick-links ul li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 .quick-links ul li a {
   color: #ccc;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   transition: color 0.3s ease;
 }
 .quick-links ul li a:hover {
@@ -348,12 +356,12 @@ button.btn-dark:hover {
 }
 .client-btn {
   background-color: #ff6a00;
-  padding: 0.6rem 1.4rem;
+  padding: 0.6rem 1.2rem;
   border: none;
   color: white;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   box-shadow: 0 0 15px rgba(255, 106, 0, 0.5);
   transition: background 0.3s ease;
@@ -376,7 +384,7 @@ button.btn-dark:hover {
 .footer-col.dev-box {
   border: 2px dotted rgba(255, 106, 0, 0.5);
   background: rgba(255, 255, 255, 0.03);
-  padding: 1.5rem;
+  padding: 1.2rem;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(255, 106, 0, 0.1);
 }
@@ -391,7 +399,7 @@ button.btn-dark:hover {
   background-color: #1a1a1a;
   border: 1px dashed rgba(255, 106, 0, 0.6);
   border-radius: 10px;
-  padding: 1.2rem 1.5rem;
+  padding: 1rem 1.2rem;
   box-shadow: 0 0 12px rgba(255, 106, 0, 0.2);
   margin-top: 1rem;
   transition: box-shadow 0.3s ease;
@@ -404,17 +412,17 @@ button.btn-dark:hover {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 .footer-dev p {
   margin: 0;
   color: #ddd;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 .dev-linkedin,
 .dev-email {
   color: #ff6a00;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -429,8 +437,8 @@ button.btn-dark:hover {
 .client-btn {
   background-color: #ff6a00;
   color: white;
-  padding: 0.7rem 1.8rem;
-  font-size: 1rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -453,7 +461,7 @@ button.btn-dark:hover {
   margin-top: 1rem;
 }
 .social-icon {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: white;
   transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -468,9 +476,9 @@ button.btn-dark:hover {
 /* Footer Bottom */
 .footer-bottom {
   border-top: 1px solid #333;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   padding-top: 1rem;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #aaa;
   text-align: center;
 }
@@ -479,7 +487,7 @@ button.btn-dark:hover {
 }
 .footer-policies a {
   color: #aaa;
-  margin: 0 0.5rem;
+  margin: 0 0.4rem;
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -489,45 +497,105 @@ button.btn-dark:hover {
 .policy-sep {
   color: #555;
 }
-/* Responsive */
+
+/* ===============================
+   📱 Responsive Design
+================================== */
+
+/* Tablets and small devices */
 @media (max-width: 768px) {
+  .main-wrapper {
+    padding: 0.5rem;
+  }
+  
+  .layout-container {
+    padding: 0 0.5rem;
+  }
+  
   .header {
-    flex-direction: column;
-    align-items: flex-start;
+    padding: 0.6rem 0;
   }
+  
+  .header .layout-container {
+    padding: 0 0.5rem;
+  }
+  
+  .brand-logo {
+    height: 36px;
+  }
+  
+  .nav-links a {
+    margin: 0 0.5rem;
+    font-size: 0.9rem;
+  }
+  
   .nav-and-buttons {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    margin-top: 1rem;
+    gap: 1rem;
   }
-  .nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  
+  .login-buttons {
+    gap: 0.6rem;
   }
+  
+  button.btn-orange, button.btn-dark {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .banner {
+    padding: 1.2rem;
+  }
+  
+  .banner-image {
+    height: 60px;
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  
+  .section-desc {
+    font-size: 0.9rem;
+  }
+  
+  .footer {
+    padding: 1.5rem 0.5rem 0.8rem;
+  }
+  
   .footer-main {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
+    gap: 1.5rem;
   }
+  
+  .footer-brand {
+    font-size: 1.2rem;
+  }
+  
   .quick-links-columns {
-    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .footer-bottom {
+    font-size: 0.75rem;
+  }
+  
+  .client-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
   }
 }
-/* ===============================
-   📱 Improved Mobile Responsiveness
-================================== */
-@media (max-width: 600px) {
-  /* Background adjustments for mobile */
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  /* Background adjustments */
   .bg-dot-grid {
-    background-size: 24px 24px; /* Less dense pattern for smaller screens */
+    background-size: 20px 20px;
   }
   
   .geo-shape.circle {
     width: 60px;
     height: 60px;
-    top: 10%;
+    top: 15%;
     left: 5%;
   }
   
@@ -535,186 +603,228 @@ button.btn-dark:hover {
     border-left-width: 30px;
     border-right-width: 30px;
     border-bottom-width: 54px;
-    top: 30%;
+    top: 35%;
     left: 70%;
   }
   
   .geo-shape.square {
-    width: 40px;
-    height: 40px;
-    top: 50%;
+    width: 50px;
+    height: 50px;
+    top: 55%;
     left: 15%;
   }
   
   .geo-shape.hexagon {
-    width: 40px;
-    height: 23px;
-    top: 60%;
-    left: 50%;
+    width: 50px;
+    height: 28px;
+    top: 65%;
+    left: 60%;
   }
   
   .geo-shape.hexagon:before,
   .geo-shape.hexagon:after {
-    border-left-width: 20px;
-    border-right-width: 20px;
+    border-left-width: 25px;
+    border-right-width: 25px;
   }
   
   .geo-shape.hexagon:before {
-    border-bottom-width: 12px;
+    border-bottom-width: 14px;
   }
   
   .geo-shape.hexagon:after {
-    border-top-width: 12px;
+    border-top-width: 14px;
   }
   
   /* Layout adjustments */
-  .main-wrapper,
+  .main-wrapper {
+    padding: 0.3rem;
+  }
+  
   .layout-container {
-    padding: 0 0.5rem !important;
-    max-width: 100vw !important;
+    padding: 0 0.3rem;
   }
   
   .header {
-    padding: 0.7rem 0.2rem;
-    flex-direction: column !important;
-    align-items: flex-start !important;
+    padding: 0.5rem 0;
   }
   
   .header .layout-container {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    padding: 0 0.5rem !important;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 0.3rem;
   }
   
   .brand-logo {
-    height: 36px !important;
+    height: 32px;
     margin-bottom: 0.5rem;
   }
   
   .nav-and-buttons {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.7rem !important;
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
-    margin-top: 0.5rem;
+    gap: 0.5rem;
   }
   
   .nav-links {
-    flex-direction: column !important;
-    gap: 0.5rem !important;
+    display: flex;
+    flex-direction: column;
     width: 100%;
   }
   
   .nav-links a {
-    margin: 0.2rem 0 !important;
-    font-size: 1rem !important;
+    margin: 0.2rem 0;
+    padding: 0.5rem 0;
     width: 100%;
     display: block;
-    padding: 0.5rem 0;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .login-buttons {
-    flex-direction: column !important;
-    gap: 0.5rem !important;
+    flex-direction: column;
     width: 100%;
+    gap: 0.5rem;
+  }
+  
+  button.btn-orange, button.btn-dark {
+    width: 100%;
+    padding: 0.6rem 0;
+    text-align: center;
   }
   
   .banner {
-    padding: 1rem 0.5rem !important;
+    padding: 1rem;
   }
   
   .banner-image {
-    height: 60px !important;
-  }
-  
-  .section-title {
-    font-size: 1.1rem !important;
-    margin-top: 1.5rem !important;
-  }
-  
-  .section-desc {
-    font-size: 0.95rem !important;
-    padding: 0 0.2rem !important;
-  }
-  
-  .footer {
-    padding: 1.5rem 0.5rem 1rem !important;
-  }
-  
-  .footer-main {
-    flex-direction: column !important;
-    gap: 1.5rem !important;
-    align-items: center !important;
-    text-align: center !important;
-  }
-  
-  .footer-col {
-    min-width: unset !important;
-    width: 100% !important;
-    margin-bottom: 1.2rem !important;
-  }
-  
-  .quick-links-columns {
-    flex-direction: column !important;
-    gap: 1rem !important;
-    align-items: center !important;
-  }
-  
-  .footer-social,
-  .footer-social-icons {
-    justify-content: center !important;
-    gap: 0.7rem !important;
-  }
-  
-  .footer-bottom {
-    font-size: 0.8rem !important;
-    padding-top: 0.5rem !important;
-  }
-  
-  .client-btn {
-    width: 100% !important;
-    font-size: 1rem !important;
-    padding: 0.7rem 0 !important;
-  }
-  
-  .neon-box {
-    padding: 0.7rem 0.5rem !important;
-    font-size: 0.95rem !important;
-  }
-  
-  /* Button improvements */
-  button.btn-orange, 
-  button.btn-dark {
-    padding: 0.7rem 1.2rem;
-    font-size: 1rem;
-    width: 100%;
-    display: block;
-    margin: 0.3rem 0;
+    height: 50px;
   }
   
   .banner-buttons {
     flex-direction: column;
     width: 100%;
-    gap: 0.5rem;
   }
   
   .banner-buttons button {
     width: 100%;
   }
   
-  .section-button button {
-    display: block;
+  .section-title {
+    font-size: 1.1rem;
+    margin-top: 1.2rem;
+  }
+  
+  .section-desc {
+    font-size: 0.85rem;
+    padding: 0 0.5rem;
+  }
+  
+  .section-button {
+    flex-direction: column;
     width: 100%;
   }
   
-  /* Touch-friendly spacing */
-  .nav-links a,
-  button,
-  .client-btn,
-  .quick-links ul li a {
-    min-height: 44px;
-    display: flex;
+  .section-button button {
+    width: 100%;
+  }
+  
+  .footer {
+    padding: 1.2rem 0.3rem 0.5rem;
+  }
+  
+  .footer-main {
+    flex-direction: column;
+    gap: 1.2rem;
     align-items: center;
+    text-align: center;
+  }
+  
+  .footer-col {
+    min-width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-col.external {
+    align-items: center;
+  }
+  
+  .quick-links-columns {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .quick-links ul {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .footer-social,
+  .footer-social-icons {
     justify-content: center;
+    gap: 0.8rem;
+  }
+  
+  .client-btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.6rem 0;
+    justify-content: center;
+  }
+  
+  .neon-box {
+    padding: 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .footer-bottom {
+    font-size: 0.7rem;
+    padding-top: 0.8rem;
+  }
+  
+  .footer-policies {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .footer-policies a {
+    display: block;
+    margin: 0.2rem 0;
+  }
+  
+  .policy-sep {
+    display: none;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 320px) {
+  .brand-logo {
+    height: 28px;
+  }
+  
+  .section-title {
+    font-size: 1rem;
+  }
+  
+  .section-desc {
+    font-size: 0.8rem;
+  }
+  
+  .footer-brand {
+    font-size: 1.1rem;
+  }
+  
+  .footer-desc {
+    font-size: 0.85rem;
+  }
+  
+  .client-btn {
+    font-size: 0.85rem;
+  }
+  
+  .social-icon {
+    font-size: 1.1rem;
   }
 }
