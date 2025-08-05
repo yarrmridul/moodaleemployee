@@ -170,7 +170,9 @@ app.post("/adminlogin", (req, res) => {
     connection.query(q, [formmail, formpass], (err, results) => {
       if (err) throw err;
       if (results.length === 0) {
-        return res.send("Invalid credentials"); // no matching user found
+       // return res.send("Invalid credentials"); // no matching user found
+        return res.render("login", { error: "Invalid email or password" });
+
       }
       let user = results[0];
 
@@ -178,12 +180,14 @@ app.post("/adminlogin", (req, res) => {
       if (formmail === user.email && formpass === user.password) {
         res.render("adminindex.ejs", { user });
       } else {
-        res.send("Invalid credentials");
+      //  res.send("Invalid credentials");
+              res.render("login", { error: "Invalid email or password" });
+
       }
     });
   } catch (error) {
     console.error("Error during login:", error);
-    res.send("An error occurred during login. Please try again later.");
+    res.render("login", { error: "Something went wrong. Try again later." });
   }
 });
 
@@ -375,7 +379,7 @@ app.get("/admin/employee/all", async (req, res) => {
 //=========================================================employee portal==================================================================
 
 app.get("/emplogin", (req, res) => {
-  res.render("elogin.ejs");
+  res.render("elogin.ejs", { error: null }); // pass null if no error
 });
 
 app.get("/emp", async (req, res) => {
@@ -435,18 +439,29 @@ app.get("/emp", async (req, res) => {
 app.post("/emplogin", async (req, res) => {
   const { email, password } = req.body;
 
-  const [users] = await connection.promise().query(
-    "SELECT * FROM employeedata WHERE email = ? AND password = ?",
-    [email, password]
-  );
+  try {
+    const [users] = await connection.promise().query(
+      "SELECT * FROM employeedata WHERE email = ? AND password = ?",
+      [email, password]
+    );
 
-  if (users.length === 0) return res.send("Invalid credentials");
+    if (users.length === 0) {
+      return res.render("elogin.ejs", {
+        error: "Invalid email or password",
+      });
+    }
 
-  const user = users[0];
-  req.session.email = user.email; // 🎯 store once
-  req.session.empID = user.id;
+    const user = users[0];
+    req.session.email = user.email;
+    req.session.empID = user.id;
 
-  res.redirect("/emp"); // Now redirect to dashboard
+    res.redirect("/emp");
+  } catch (err) {
+    console.error("Error during login:", err);
+    res.render("elogin.ejs", {
+      error: "Something went wrong. Please try again.",
+    });
+  }
 });
 
 

@@ -1,160 +1,97 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
-    <link as="style"
-        href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
-        onload="this.rel='stylesheet'" rel="stylesheet" />
-          <link rel="icon" href="https://media-del2-2.cdn.whatsapp.net/v/t61.24694-24/421327366_1012227250666599_5875533542942456816_n.jpg?stp=dst-jpg_s96x96_tt6&ccb=11-4&oh=01_Q5Aa1wFqUyUCUstJcBRxkYyNuuTOw1ZDEu3U7e3r-cbBAxERtA&oe=68586A79&_nc_sid=5e03e0&_nc_cat=109">
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
-    <title>Employee Login</title>
-    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link rel="stylesheet" href="login.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Login | Moodale</title>
+  <link rel="icon" href="https://media-del2-2.cdn.whatsapp.net/v/t61.24694-24/421327366_1012227250666599_5875533542942456816_n.jpg?...">
+  <link rel="stylesheet" href="/login.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 
-<body class="bg-[#111418] dark">
-    <div class="relative flex min-h-screen flex-col overflow-hidden group/design-root">
-        <div class="absolute inset-0 -z-10 [perspective:1000px]">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#1a202c]/80 via-[#2d3748]/80 to-[#1a202c]/80"></div>
-            <div class="absolute inset-0 transform-style-preserve-3d">
-                <div class="absolute top-1/4 left-1/4 h-64 w-64 bg-purple-500/30 rounded-full blur-3xl animate-float"
-                    style="transform: translateZ(-200px) rotateX(45deg) rotateY(30deg); animation-delay: -1s;"></div>
-                <div class="absolute bottom-1/3 right-1/4 h-72 w-72 bg-blue-500/40 rounded-full blur-3xl animate-float"
-                    style="transform: translateZ(-300px) rotateX(-30deg) rotateY(-45deg); animation-delay: -2s;"></div>
-                <div class="absolute top-1/3 right-1/3 h-56 w-56 bg-pink-500/30 rounded-full blur-3xl animate-float"
-                    style="transform: translateZ(-100px) rotateX(60deg) rotateY(15deg); animation-delay: -3s;"></div>
-                <div class="absolute bottom-1/4 left-1/3 h-48 w-48 bg-teal-500/30 rounded-full blur-3xl animate-float"
-                    style="transform: translateZ(-400px) rotateX(-20deg) rotateY(60deg); animation-delay: -4s;"></div>
-                <div class="absolute top-1/2 left-1/2 h-24 w-24 bg-indigo-500/20 rounded-full blur-2xl animate-float-fast"
-                    style="transform: translateZ(-50px) rotateX(10deg) rotateY(-10deg);"></div>
-                <div class="absolute top-1/4 right-1/3 h-16 w-16 bg-rose-500/20 rounded-full blur-xl animate-float-fast"
-                    style="transform: translateZ(-20px) rotateX(-5deg) rotateY(5deg); animation-delay: -0.5s;"></div>
-            </div>
-            <div
-                class="absolute -bottom-1/3 -left-1/4 h-2/3 w-2/3 rounded-full bg-gradient-radial from-purple-600/10 to-transparent blur-3xl filter animate-pulse">
-            </div>
-            <div
-                class="absolute -top-1/3 -right-1/4 h-2/3 w-2/3 rounded-full bg-gradient-radial from-blue-500/15 to-transparent blur-3xl filter animate-pulse animation-delay-2000">
-            </div>
-            <div
-                class="absolute top-1/4 left-1/4 h-1/2 w-1/2 rounded-full bg-gradient-radial from-pink-500/10 to-transparent blur-3xl filter animate-pulse animation-delay-4000">
-            </div>
-        </div>
-        <div class="flex h-full grow flex-col">
-            <header class="flex items-center justify-center whitespace-nowrap px-10 py-2 sm:py-4">
-                <div class="flex items-center gap-3 text-white">
-                    <header class="flex items-center justify-center whitespace-nowrap px-10 py-6 sm:py-8">
-                        <div class="flex items-center gap-3 text-white">
-                            <img src="/images/logo.png" alt="Company Logo"
-                                class="h-24 w-24 sm:h-32 sm:w-32 object-contain logosize" />
+<body class="bg-[#0d0d0d] font-[Manrope] text-white">
+  <!-- Dotted Grid Background -->
+  <div class="bg-dot-grid"></div>
+  <!-- Geometric Glow Background -->
+  <div class="bg-geometry">
+    <div class="geo-shape circle"></div>
+    <div class="geo-shape triangle"></div>
+    <div class="geo-shape square"></div>
+    <div class="geo-shape hexagon"></div>
+  </div>
 
-                        </div>
-                    </header>
-
-                </div>
-            </header>
-            <main class="flex flex-1 items-center justify-center px-4 py-2 sm:px-6 lg:px-8 mt-1">
-                <div
-                    class="w-full max-w-md space-y-8 rounded-2xl bg-[#1e2329]/80 p-8 shadow-2xl backdrop-blur-lg ring-1 ring-white/5">
-                    <div>
-                        <h2 class="text-center text-3xl font-bold tracking-tight text-white">Good to see you again</h2>
-                    </div>
-                    <form action="/emplogin" class="space-y-6" method="post">
-                        <div>
-                            <label class="sr-only" for="email">Email ID</label>
-                            <input autocomplete="email" class="form-input h-14 " id="email" name="email"
-                                placeholder="Email ID" required="" type="email" />
-                        </div>
-                        <div class="relative">
-                            <input autocomplete="current-password" class="form-input h-14  pr-10" id="password"
-                                name="password" placeholder="Password" required type="password" />
-                            <button type="button" onclick="togglePassword()"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-300 hover:text-white focus:outline-none">
-                                <span id="toggleIcon" class="material-icons-outlined">visibility</span>
-                            </button>
-                        </div>
-
-                        <div class="flex items-center justify-end">
-                            <div class="text-sm">
-                                <a class="font-medium text-[#9cabba] hover:text-[var(--primary-color)]" href="#"> Forgot
-                                    Password? </a>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary h-14 w-full" type="submit">
-                                <span class="truncate">Log in</span>
-                            </button>
-                        </div>
-                    </form>
-                    <div class="relative mt-8">
-                        <div aria-hidden="true" class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-600/50"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="bg-[#1e2329] px-2 text-gray-400">Support us on</span>
-                        </div>
-                    </div>
-                    <div class="mt-6 grid grid-cols-2 gap-4">
-                        <a class="btn btn-secondary h-12 flex-1 items-center justify-center gap-2 px-4 py-2"
-                            href="https://www.instagram.com/moodale_/" target="_blank">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-2.163C8.74 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.74 0 12s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.74 24 12 24s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.687.073-4.947s-.014-3.667-.072-4.947C23.728 2.69 21.306.272 16.947.072 15.667.014 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z">
-                                </path>
-                            </svg>
-                            Instagram
-                        </a>
-                        <a class="btn btn-secondary h-12 flex-1 items-center justify-center gap-2 px-4 py-2"
-                            href="https://www.linkedin.com/company/moodale/" target="_blank">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
-                                </path>
-                            </svg>
-                            LinkedIn
-                        </a>
-                        <div class="col-span-2 flex justify-center">
-
-                            <a class="goog btn btn-secondary h-12 flex-1 items-center justify-center gap-2 px-4 py-2 col-span-2 justify-self-center"
-                                href="https://g.page/r/CW3Sc5-WIod_EBE/review" target="_blank">
-                                <svg class="h-4 w-5" viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill="currentColor"
-                                        d="M533.5 278.4c0-17.5-1.6-35-4.8-51.9H272v98.4h146.9c-6.3 34-25.1 62.8-53.5 82.1v68h86.4c50.6-46.6 81.7-115.4 81.7-196.6z" />
-                                    <path fill="currentColor"
-                                        d="M272 544.3c72.6 0 133.5-24 178-65.3l-86.4-68c-24 16.1-54.8 25.7-91.6 25.7-70.5 0-130.2-47.6-151.6-111.5H32v69.9c44.4 87.7 135.5 149.2 240 149.2z" />
-                                    <path fill="currentColor"
-                                        d="M120.4 325.2c-10.4-30.7-10.4-63.7 0-94.4V160.9H32c-37.2 74.3-37.2 162.3 0 236.6l88.4-72.3z" />
-                                    <path fill="currentColor"
-                                        d="M272 107.7c39.5-.6 77.6 14.1 106.5 40.6l79.4-79.4C411.8 24.8 343.6 0 272 0 167.5 0 76.4 61.5 32 149.2l88.4 69.9C141.8 155.2 201.5 107.7 272 107.7z" />
-                                </svg>
-
-                                Google
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
+  <main class="flex flex-col items-center justify-center min-h-screen px-4 py-8">
+    <div class="text-center mb-6">
+      <img src="/images/logo.png" alt="Moodale Logo" class="h-24 mx-auto drop-shadow-xl">
+      <h1 class="text-2xl sm:text-3xl font-bold mt-2">Welcome Team!</h1>
+      <p class="text-sm text-gray-300 mt-1">Log in to access your Employee Dashboard</p>
     </div>
 
-    <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById("password");
-            const toggleIcon = document.getElementById("toggleIcon");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                toggleIcon.textContent = "visibility_off";
-            } else {
-                passwordInput.type = "password";
-                toggleIcon.textContent = "visibility";
-            }
-        }
-    </script>
+    <form action="/emplogin" method="POST" class="w-full max-w-md bg-[#1a1a1a] p-6 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
+      <div class="mb-4">
+        <input type="email" name="email" id="email" placeholder="Email ID" autocomplete="email" required class="form-input h-14" />
+      </div>
+
+      <div class="mb-4 relative">
+        <input type="password" name="password" id="password" placeholder="Password" autocomplete="current-password" required class="form-input h-14 pr-10" />
+        <button type="button" onclick="togglePassword()" class="absolute right-3 top-1/2 -translate-y-1/2 text-white text-sm">
+          <span id="toggleIcon" class="material-icons-outlined text-xl">visibility</span>
+        </button>
+      </div>
+
+      <div class="flex justify-end text-sm mb-4">
+        <a href="#" class="text-gray-400 hover:text-orange-500">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn btn-orange w-full h-12">Log in</button>
+
+      <div class="mt-8 text-center text-sm text-gray-400">Support us on</div>
+
+      <div class="mt-4 grid grid-cols-2 gap-3">
+        <a href="https://www.instagram.com/moodale_/" target="_blank" class="btn btn-secondary">Instagram</a>
+        <a href="https://www.linkedin.com/company/moodale/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+      </div>
+
+      <a href="https://g.page/r/CW3Sc5-WIod_EBE/review" target="_blank" class="mt-3 btn btn-secondary w-full">Google</a>
+    </form>
+  </main>
+
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById("password");
+      const toggleIcon = document.getElementById("toggleIcon");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.textContent = "visibility_off";
+      } else {
+        passwordInput.type = "password";
+        toggleIcon.textContent = "visibility";
+      }
+    }
+  </script>
+
+  <!-- WhatsApp Floating Button -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/917983738443" target="_blank" title="Chat with us on WhatsApp">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp">
+    </a>
+  </div>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+  <div id="error-dialog" class="fixed top-6 right-6 z-50 bg-red-600 text-white px-4 py-3 rounded-lg shadow-lg animate-pulse">
+    <%= error %>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      const dialog = document.getElementById('error-dialog');
+      if (dialog) dialog.remove();
+    }, 3000);
+  </script>
+<% } %>
 
 </body>
 

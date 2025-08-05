@@ -36,18 +36,48 @@
           <div class="nav-and-buttons">
             <nav class="nav-links">
               <a href="/">Home</a>
+
               <a href="https://drive.google.com/file/d/1y372tyx79wE11R-lZPWv32gyvCs_LA-r/view?usp=sharing"
                 target="_blank">About Us</a>
-              <a href="#">Contact</a>
+              <a href="#" onclick="openContactDialog()">Contact</a>
             </nav>
             <div class="login-buttons">
-              <button class="btn-orange">Employee Login</button>
-              <button class="btn-dark" a href="/admin">Admin Login</a></button>
+              <form action="/emplogin" method="get">
+                <button class="btn-orange">Employee Login</button>
+              </form>
+              <form action="/adminlogin" method="get">
+                <button class="btn-dark">Admin Login</button>
+              </form>
+
             </div>
           </div>
         </div>
       </header>
 
+<!-- dialog box for contact details -->
+<div id="contact-dialog" class="contact-dialog hidden">
+  <div class="dialog-content">
+    <h2 class="text-2xl font-bold mb-4 tracking-wide text-orange-400">Get in Touch</h2>
+    <div class="text-left space-y-3 text-base leading-relaxed">
+      <p><strong class="text-gray-300">📧 Email:</strong> <span class="text-white">moodale2020@gmail.com</span></p>
+      <p><strong class="text-gray-300">📞 Phone:</strong> <a href="tel:7983738443" class="text-orange-300 hover:text-orange-500">7983738443</a></p>
+      <p><strong class="text-gray-300">📸 Instagram:</strong> <a href="https://www.instagram.com/moodale_/" target="_blank" class="text-orange-300 hover:text-orange-500">@moodale_</a></p>
+    </div>
+    <button class="btn-dark mt-6 px-6 py-2 rounded-lg hover:bg-orange-600 transition-all" onclick="closeContactDialog()">Back</button>
+  </div>
+</div>
+
+<script>
+  function openContactDialog() {
+    document.getElementById("contact-dialog").classList.remove("hidden");
+  }
+
+  function closeContactDialog() {
+    document.getElementById("contact-dialog").classList.add("hidden");
+  }
+</script>
+
+<!-- -->
 
 
       <div class="main-content">
@@ -60,7 +90,7 @@
             </div>
 
             <div class="banner-buttons">
-             
+
               <form action="/emplogin" method="get">
                 <button class="btn-orange">Employee Login</button>
               </form>
@@ -72,22 +102,28 @@
             </div>
           </div>
 
-          <h2 class="section-title">Not yet a partner?</h2>
-          <p class="section-desc">
-            If you're not currently an employee but are interested in joining our team, we encourage you to explore our
-            career opportunities.
-          </p>
-          <div class="section-button">
-            <button class="btn-orange">Apply Now!</button>
-          </div>
+          <div class="section-row">
+            <div class="section-half">
+              <h2 class="section-title">Not yet a partner?</h2>
+              <p class="section-desc">
+                If you're not currently an employee but are interested in joining our team, we encourage you to explore
+                our
+                career opportunities.
+              </p>
+              <div class="section-button">
+                <button class="btn-orange">Apply Now!</button>
+              </div>
+            </div>
 
-
-          <h2 class="section-title">Need Help?</h2>
-          <p class="section-desc">
-            We're here to inspire, not confuse. If you need assistance, please reach out to our support team.
-          </p>
-          <div class="section-button">
-            <button class="btn-dark">Contact Support</button>
+            <div class="section-half">
+              <h2 class="section-title">Need Help?</h2>
+              <p class="section-desc">
+                We're here to inspire, not confuse. If you need assistance, please reach out to our support team.
+              </p>
+              <div class="section-button">
+                <button class="btn-dark">Contact Support</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -173,7 +209,7 @@
     </div>
   </footer>
 
-    <!-- WhatsApp Floating Button -->
+  <!-- WhatsApp Floating Button -->
   <div class="whatsapp-float">
     <a href="https://wa.me/917983738443" target="_blank" title="Chat with us on WhatsApp">
       <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp">
