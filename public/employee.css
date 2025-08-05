@@ -1,7 +1,17 @@
+/* Layout Base */
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #fdf3e0;
+  font-family: 'Inter', sans-serif;
+  background-color: #0d0d0d;
+  color: #f1f1f1;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255, 106, 0, 0.07), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(255, 106, 0, 0.05), transparent 35%),
+    linear-gradient(145deg, #0d0d0d 0%, #1a1a1a 100%),
+    repeating-linear-gradient(45deg, rgba(255, 106, 0, 0.01) 0, rgba(255, 106, 0, 0.01) 2px, transparent 2px, transparent 6px);
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .container {
@@ -11,13 +21,14 @@ body {
 
 /* Sidebar */
 .sidebar {
-  width: 140px;
-  background: white;
-  border-right: 1px solid #e5e7eb;
+  width: 260px;
+  background-color: #111;
+  border-right: 1px solid #333;
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1rem;
   position: relative;
+  z-index: 10;
 }
 
 .sidebar-header {
@@ -25,12 +36,13 @@ body {
   align-items: center;
   gap: 10px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.1rem;
+  color: #ff6a00;
   margin-bottom: 2rem;
 }
 
 .logo {
-  background-color: #3b82f6;
+  background-color: #ff6a00;
   padding: 6px;
   border-radius: 9999px;
   color: white;
@@ -41,44 +53,51 @@ body {
   align-items: center;
   padding: 12px;
   gap: 10px;
-  border-radius: 6px;
-  color: #374151;
+  border-radius: 8px;
+  color: #e6e6e6;
   text-decoration: none;
   margin-bottom: 4px;
+  transition: background 0.3s ease;
 }
 
 .menu .menu-item:hover {
-  background-color: #f3f4f6;
+  background-color: #222;
 }
 
-.menu .active {
-  background-color: #eff6ff;
-  color: #2563eb;
+.menu .menu-item.active {
+  background-color: #1a1a1a;
+  color: #ff6a00;
 }
 
 .logout {
-  position: absolute;
-  bottom: 1rem;
-  width: calc(100% - 2rem);
+  margin-top: auto;
+  padding-top: 1rem;
 }
 
 .logout button {
   width: 100%;
   padding: 10px;
-  border: 1px solid #d1d5db;
-  background: none;
+  border: 1px solid #444;
+  background: transparent;
+  color: #ccc;
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  border-radius: 6px;
 }
 
+.logout button:hover {
+  background-color: #1a1a1a;
+}
 
 /* Main content */
 .main {
   flex: 1;
   padding: 1.5rem;
   overflow-y: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .main-header {
@@ -89,14 +108,15 @@ body {
 }
 
 .main-header h1 {
-  font-size: 27px;
-  font-weight: bold;
-  color: #333;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff6a00;
+  text-shadow: 0 0 8px rgba(255, 106, 0, 0.4);
 }
 
 .buttons .btn {
   margin-left: 0.5rem;
-  padding: 0.4rem 0.8rem;
+  padding: 0.5rem 1rem;
   font-size: 15px;
   cursor: pointer;
   border: none;
@@ -107,8 +127,7 @@ body {
 
 .buttons .btn:hover {
   opacity: 0.9;
-    font-size: 17px;
-
+  font-size: 16px;
 }
 
 .buttons .edit {
@@ -116,7 +135,7 @@ body {
 }
 
 .buttons .delete {
-  background: #e63946;
+  background: #dc2626;
 }
 
 .buttons .add {
@@ -125,69 +144,73 @@ body {
 
 /* Search */
 .search-container {
-  position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .search-container input {
   width: 100%;
-  padding: 0.5rem 0.5rem 0.5rem 2rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background: white;
-}
-
-.search-icon {
-  position: absolute;
-  top: 50%;
-  left: 0.7rem;
-  transform: translateY(-50%);
-  color: #aaa;
+  padding: 0.5rem 1rem;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #1a1a1a;
+  color: #f1f1f1;
 }
 
 /* Table */
 .table-section {
-  background: white;
-  border-radius: 8px;
+  background: #1a1a1a;
+  border-radius: 12px;
   overflow-x: auto;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(255, 106, 0, 0.1);
+  border: 1px solid #333;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 0.9rem;
+  color: #eee;
 }
 
 thead {
-  background: #f9fafb;
-  color: #555;
-  font-size: 12px;
+  background: rgba(255, 106, 0, 0.1);
+  color: #ffb84d;
+  font-size: 0.75rem;
   text-transform: uppercase;
 }
 
 th, td {
-  padding: 12px 16px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
+  padding: 12px 20px;
+  border-bottom: 1px solid #2c2c2c;
   white-space: nowrap;
 }
 
 tbody tr:hover {
-  background: #f3f4f6;
+  background: rgba(255, 106, 0, 0.03);
 }
 
-td a {
-  color: #f97316;
-  text-decoration: none;
+/* Status tags */
+.status {
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+.status.pending {
+  background: #facc15;
+  color: #1a1a1a;
+}
+.status.accepted {
+  background: #16a34a;
+  color: white;
+}
+.status.rejected {
+  background: #dc2626;
+  color: white;
 }
 
-td a:hover {
-  color: #c2410c;
-}
-
-
-
-/* Modal Background */
+/* Modal */
 .modal {
   position: fixed;
   top: 0;
@@ -195,56 +218,37 @@ td a:hover {
   width: 100%;
   height: 100%;
   backdrop-filter: blur(5px);
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 999;
 }
 
-/* Modal Box */
 .modal-content {
-  background: rgba(255, 255, 255, 0.95);
+  background: #1a1a1a;
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 12px;
   width: 700px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(255, 106, 0, 0.2);
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Heading */
 .modal-content h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
-  color: #333;
+  color: #ffb84d;
 }
-.search-container input {
-  padding: 8px;
-  width: 250px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-.edit-btn {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-}
-
 
 /* Form Styling */
 .form-group label {
   display: block;
   margin-top: 10px;
   font-weight: 600;
-  color: #444;
+  color: #ccc;
 }
 
 .form-group input,
@@ -254,12 +258,13 @@ td a:hover {
   padding: 10px;
   margin-top: 4px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: #f4f4f4;
+  border: 1px solid #444;
+  background-color: #2a2a2a;
+  color: #eee;
   font-size: 14px;
 }
 
-/* Button Area */
+/* Modal Buttons */
 .modal-buttons {
   display: flex;
   justify-content: flex-end;
@@ -267,7 +272,6 @@ td a:hover {
   margin-top: 25px;
 }
 
-/* Confirm and Cancel Buttons */
 .confirm-btn,
 .cancel-btn {
   padding: 10px 20px;
@@ -276,15 +280,16 @@ td a:hover {
   font-weight: 600;
   cursor: pointer;
   font-size: 15px;
+  transition: 0.3s ease;
 }
 
 .confirm-btn {
-  background-color: #28a745;
+  background-color: #16a34a;
   color: white;
 }
 
 .cancel-btn {
-  background-color: #dc3545;
+  background-color: #dc2626;
   color: white;
 }
 
@@ -298,4 +303,62 @@ td a:hover {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* Background Glows */
+.bg-elements {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.glow-ring {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border: 2px solid rgba(255, 106, 0, 0.25);
+  border-radius: 50%;
+  box-shadow: 0 0 60px rgba(255, 106, 0, 0.3);
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.glow-ring.top-left {
+  top: 5%;
+  left: 5%;
+}
+
+.glow-ring.bottom-right {
+  bottom: 10%;
+  right: 8%;
+  transform: scale(1.2);
+}
+
+.blur-blob.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  background: radial-gradient(circle at center, rgba(255, 106, 0, 0.15), transparent 70%);
+  filter: blur(60px);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.moodale-watermark {
+  position: absolute;
+  bottom: 4%;
+  right: 3%;
+  font-size: 4rem;
+  font-weight: 800;
+  color: rgba(255, 106, 0, 0.035);
+  font-family: 'Segoe UI', sans-serif;
+  user-select: none;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.15) rotate(5deg); opacity: 0.4; }
 }

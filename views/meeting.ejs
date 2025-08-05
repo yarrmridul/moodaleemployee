@@ -3,13 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MEETINGS</title>
-  <link href="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/umd/lucide.min.css" />
+  <title>Meetings</title>
+
+  <!-- Styles -->
   <link rel="stylesheet" href="/meeting.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/umd/lucide.min.css" />
 </head>
 <body>
+
+  <!-- Background effects -->
+  <div class="bg-elements">
+    <div class="glow-ring top-left"></div>
+    <div class="glow-ring bottom-right"></div>
+    <div class="blur-blob center"></div>
+    <div class="moodale-watermark">Moodale</div>
+  </div>
+
+  <!-- Hamburger for mobile -->
+  <button class="sidebar-toggle-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+
+  <!-- Layout -->
   <div class="container">
     <!-- Sidebar -->
     <aside class="sidebar">
@@ -21,11 +35,9 @@
       </div>
       <nav class="menu">
         <a href="/admin" class="menu-item"><i data-lucide="users"></i>Dashboard</a>
-        <form action="/admin/employee" method="get">
-          <a href="/admin/employee" class="menu-item active"><i data-lucide="users"></i>Employees</a>
-        </form>
+        <a href="/admin/employee" class="menu-item"><i data-lucide="users"></i>Employees</a>
         <a href="/admin/task" class="menu-item"><i data-lucide="message-square"></i>Tasks</a>
-        <a href="/admin/meeting" class="menu-item"><i data-lucide="calendar"></i>Meetings</a>
+        <a href="/admin/meeting" class="menu-item active"><i data-lucide="calendar"></i>Meetings</a>
         <a href="/admin/leave" class="menu-item"><i data-lucide="calendar"></i>Leave Requests</a>
       </nav>
       <div class="logout">
@@ -34,12 +46,15 @@
     </aside>
 
     <!-- Main Content -->
-     <div class="main">
-    WILL BE ACTIVE SOON
-    </div>
+    <main class="main-content">
+      <h1 class="title">Meeting Panel</h1>
+      <div class="coming-soon-box">
+        WILL BE ACTIVE SOON
+      </div>
     </main>
   </div>
 
+  <!-- Scripts -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
 </body>
