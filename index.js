@@ -3,6 +3,8 @@ console.log("Loaded ENV variables:");
 console.log("DB_HOST:", process.env.DB_HOST);
 console.log("SMTP_USER:", process.env.SMTP_USER);
 console.log("PORT:", process.env.PORT);
+const session = require("express-session");
+
 
 const fs = require("fs");
 const path = require("path");
@@ -18,6 +20,14 @@ const nodemailer = require("nodemailer");
 
 const cors = require("cors");
 app.use(cors());
+
+app.use(
+  session({
+    secret: "your-secret-key",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 app.post("/admin/employee/send-mail/:email", async (req, res) => {
   const employeeEmail = req.params.email;
@@ -361,66 +371,85 @@ app.get("/admin/employee/all", async (req, res) => {
 //
 
 
+
 //=========================================================employee portal==================================================================
 
 app.get("/emplogin", (req, res) => {
   res.render("elogin.ejs");
 });
 
+app.get("/emp", async (req, res) => {
+  if (!req.session.email) {
+    console.warn("No session email found. Redirecting to login.");
+    return res.redirect("/emplogin");
+  }
 
-
-app.post("/emplogin", (req, res) => {
-  const formmail = req.body.email;
-  const formpass = req.body.password;
-
-  const q = "SELECT * FROM employeedata WHERE email = ? AND password = ?";
   try {
-    connection.query(q, [formmail, formpass], (err, results) => {
-      if (err) throw err;
-      if (results.length === 0) {
-        return res.send("Invalid credentials");
-      }
+    // ✅ Fetch employee based on session email
+    const [users] = await connection.promise().query(
+      "SELECT * FROM employeedata WHERE email = ?",
+      [req.session.email]
+    );
 
-      const user = results[0];
-      const employeeName = user.name;
+    if (!users || users.length === 0) {
+      console.warn("No employee found for session email:", req.session.email);
+      return res.redirect("/emplogin");
+    }
 
-      const updates = [
-        {
-          title: "Company-Wide Meeting",
-          tag: "Urgent",
-          description: "Meeting on July 15 at 2 PM.",
-          date: "July 10, 2024",
-        },
-        {
-          title: "New Project Kickoff",
-          tag: "For Managers",
-          description: "Phoenix kickoff July 18, 10 AM.",
-          date: "July 9, 2024",
-        },
-      ];
+    const employee = users[0]; // ✅ Store employee
 
-      const tasks = [
-        {
-          name: "Website Redesign",
-          client: "Acme Corp",
-          assigned: employeeName,
-          details: "Finalize mockups & gather feedback",
-          status: "In Progress",
-          deadline: "2024-08-15",
-        },
-      ];
+    // ✅ Create single-task array from employee fields
+    const updates = [
+      {
+        title: employee.recent_update_title,
+        tag: employee.recent_update_tag,
+        description: employee.recent_update_description,
+        date: employee.recent_update_date,
+      },
+    ];
 
-      res.render("empindex.ejs", {
-        employeeName,
-        updates,
-        tasks,
-      });
+    const tasks = [
+      {
+        name: employee.task_name,
+        client: employee.task_client,
+        assigned: employee.name,
+        details: employee.task_details,
+        status: employee.task_status,
+        deadline: employee.task_deadline,
+      },
+    ];
+
+    // ✅ Render dashboard with all values
+    res.render("empindex.ejs", {
+      employee,
+      updates,
+      tasks,
     });
-  } catch (error) {
-    console.error("Error during login:", error);
-    res.send("An error occurred during login. Please try again later.");
+  } catch (err) {
+    console.error("Error in /emp route:", err);
+    res.status(500).send("Server error");
   }
 });
+
+
+app.post("/emplogin", async (req, res) => {
+  const { email, password } = req.body;
+
+  const [users] = await connection.promise().query(
+    "SELECT * FROM employeedata WHERE email = ? AND password = ?",
+    [email, password]
+  );
+
+  if (users.length === 0) return res.send("Invalid credentials");
+
+  const user = users[0];
+  req.session.email = user.email; // 🎯 store once
+  req.session.empID = user.id;
+
+  res.redirect("/emp"); // Now redirect to dashboard
+});
+
+
 
 app.get("/emp/meeting", (req, res) => {
   res.render("empmeeting.ejs", {

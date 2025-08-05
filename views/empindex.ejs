@@ -1,15 +1,12 @@
-<!-- employer-dashboard.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Employer Panel | Dashboard</title>
+  <title>Employee Panel | Dashboard</title>
   <link rel="stylesheet" href="/css/employer-dashboard.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="/empindex.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/empindex.css" />
-
 </head>
 <body>
   <div class="container">
@@ -18,8 +15,8 @@
       <div class="branding">Moodale</div>
       <div class="panel-title">Employee Panel</div>
       <nav class="nav-menu">
-        <a href="/emplogin" class="active">Dashboard</a>
-        <a href="/emplogin">Tasks</a>
+        <a href="/emp" class="active">Dashboard</a>
+        <a href="/emp">Tasks</a>
         <a href="/emp/meeting">Meetings</a>
         <a href="/emp/leave">Leave Requests</a>
       </nav>
@@ -29,21 +26,29 @@
     <!-- Main Content -->
     <main class="main-content">
       <header class="dashboard-header">
-        <h2>Hi, <%= employeeName %></h2>
+        <h2>Hi, <%= employee?.name || "Employee" %></h2>
       </header>
 
       <!-- Important Updates Section -->
       <section class="updates">
         <h3>Important Updates</h3>
         <div class="update-grid">
-          <% updates.forEach(update => { %>
-            <div class="update-card">
-              <div class="update-tag <%= update.tag.toLowerCase() %>"><%= update.tag %></div>
-              <h4><%= update.title %></h4>
-              <p><%= update.description %></p>
-              <span class="posted-date">Posted: <%= update.date %></span>
-            </div>
-          <% }) %>
+          <% if (updates && updates.length > 0) { %>
+            <% updates.forEach(update => { %>
+              <div class="update-card">
+                <div class="update-tag <%= update.tag ? update.tag.toLowerCase() : 'default' %>">
+                  <%= update.tag || "General" %>
+                </div>
+                <h4><%= update.title || "Untitled" %></h4>
+                <p><%= update.description || "No description available." %></p>
+                <span class="posted-date">
+                  Posted: <%= update.date ? new Date(update.date).toLocaleDateString() : "N/A" %>
+                </span>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p>No updates available.</p>
+          <% } %>
         </div>
       </section>
 
@@ -66,19 +71,27 @@
             </tr>
           </thead>
           <tbody>
-            <% tasks.forEach(task => { %>
-              <tr>
-                <td><%= task.name %></td>
-                <td><%= task.client %></td>
-                <td><%= task.assigned %></td>
-                <td><%= task.details %></td>
-                <td><span class="badge <%= task.status.toLowerCase().replace(' ', '-') %>"><%= task.status %></span></td>
-                <td><%= task.deadline %></td>
-                <td><button class="upload-btn">Upload</button></td>
-                <td><button class="download-btn">Download</button></td>
-                <td><button class="comment-btn">Add</button></td>
-              </tr>
-            <% }) %>
+            <% if (tasks && tasks.length > 0) { %>
+              <% tasks.forEach(task => { %>
+                <tr>
+                  <td><%= task.name || "N/A" %></td>
+                  <td><%= task.client || "N/A" %></td>
+                  <td><%= task.assigned || employee?.name || "N/A" %></td>
+                  <td><%= task.details || "N/A" %></td>
+                  <td>
+                    <span class="badge <%= task.status ? task.status.toLowerCase().replace(' ', '-') : 'unknown' %>">
+                      <%= task.status || "Pending" %>
+                    </span>
+                  </td>
+                  <td><%= task.deadline || "N/A" %></td>
+                  <td><button class="upload-btn">Upload</button></td>
+                  <td><button class="download-btn">Download</button></td>
+                  <td><button class="comment-btn">Add</button></td>
+                </tr>
+              <% }) %>
+            <% } else { %>
+              <tr><td colspan="9">No tasks assigned.</td></tr>
+            <% } %>
           </tbody>
         </table>
       </section>
