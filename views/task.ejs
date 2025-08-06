@@ -8,10 +8,81 @@
   <link rel="stylesheet" href="/task.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/umd/lucide.min.css" />
+
+  <style>
+    /* Toggle Buttons */
+    .task-toggle-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .toggle-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      background-color: #1f2937;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .toggle-btn:hover {
+      background-color: #374151;
+    }
+
+    .toggle-btn.active {
+      background-color: #3b82f6;
+    }
+
+    /* Responsive iframe container */
+    .google-sheet-wrapper {
+      position: relative;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+      margin-top: 1rem;
+    }
+
+    .google-sheet-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .task-toggle-buttons {
+        justify-content: center;
+      }
+
+      .toggle-btn {
+        flex: 1 1 45%;
+        text-align: center;
+      }
+
+      .relative.w-64 {
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .table-auto {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Glows and Background -->
+  <!-- Background -->
   <div class="bg-elements">
     <div class="glow-ring top-left"></div>
     <div class="glow-ring bottom-right"></div>
@@ -19,17 +90,15 @@
     <div class="moodale-watermark">Moodale</div>
   </div>
 
-  <!-- Mobile Toggle Button -->
-<button class="sidebar-toggle-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+  <!-- Mobile Sidebar Toggle -->
+  <button class="sidebar-toggle-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
 
-  <!-- Layout Container (Sidebar + Main) -->
+  <!-- Layout -->
   <div class="container">
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <div class="logo">
-          <i data-lucide="users"></i>
-        </div>
+        <div class="logo"><i data-lucide="users"></i></div>
         <span>Admin Panel</span>
       </div>
       <nav class="menu">
@@ -44,29 +113,33 @@
       </div>
     </aside>
 
-    <!-- Main Content Area -->
-    <main class="main-content">
-      <header class="header">
-        <h1 class="title">Task Management</h1>
-        <form action="/admin/task/add" method="get">
-          <button class="assign-btn"><i data-lucide="plus"></i>Assign New Task</button>
-        </form>
-      </header>
+<!-- Main Content Area -->
+<main class="main-content">
+  <header class="header">
+    <h1 class="title">Task Management</h1>
+    <form action="/admin/task/add" method="get">
+      <button class="assign-btn"><i data-lucide="plus"></i>Assign New Task</button>
+    </form>
+  </header>
 
-      <!-- Task Card -->
-      <div class="card">
-        <div class="card-header">
-          <h2 class="text-lg font-semibold">Task History</h2>
-          <div class="relative w-64">
-            <i data-lucide="search" class="absolute left-3 top-2.5 text-gray-400 h-5 w-5"></i>
-            <input type="text" class="search-input" placeholder="Search tasks..." />
-          </div>
-        </div>
+  <!-- Highlighted Center Buttons -->
+  <div class="task-toggle-buttons">
+    <button class="toggle-btn active" onclick="showSection('table')">Assign Task</button>
+    <button class="toggle-btn" onclick="showSection('sheet')">Send Task</button>
+  </div>
 
-        <!-- Task Table -->
-        <div class="overflow-x-auto">
-          <div class="overflow-wrapper">
+  <!-- Card Start -->
+  <div class="card">
+    <!-- Search Bar -->
+    <div class="search-wrapper">
+      <i data-lucide="search" class="search-icon"></i>
+      <input type="text" class="search-input" placeholder="Search tasks..." />
+    </div>
 
+    <!-- Task Table Section -->
+    <div id="task-table-section">
+      <div class="overflow-x-auto">
+        <div class="overflow-wrapper">
           <table class="table-auto w-full text-sm task-table">
             <thead>
               <tr class="table-head">
@@ -89,34 +162,62 @@
                 <td class="px-4 py-3">Finalize mockups & gather feedback</td>
                 <td class="px-4 py-3"><span class="badge-yellow">In Progress</span></td>
                 <td class="px-4 py-3">2024-08-15</td>
-                <td class="px-4 py-3"><button class="upload-btn"><i data-lucide="upload-cloud" class="w-4 h-4"></i> Upload</button></td>
-                <td class="px-4 py-3"><button class="download-btn"><i data-lucide="download-cloud" class="w-4 h-4"></i> Download</button></td>
-                <td class="px-4 py-3"><button class="comment-btn"><i data-lucide="plus-circle" class="w-4 h-4"></i> Add</button></td>
+                <td class="px-4 py-3"><button class="upload-btn"><i data-lucide="upload-cloud"></i> Upload</button></td>
+                <td class="px-4 py-3"><button class="download-btn"><i data-lucide="download-cloud"></i> Download</button></td>
+                <td class="px-4 py-3"><button class="comment-btn"><i data-lucide="plus-circle"></i> Add</button></td>
               </tr>
             </tbody>
           </table>
-          </div>
-        </div>
-
-        <!-- Pagination -->
-        <div class="pagination">
-          <div>Showing <strong>1–3</strong> of <strong>100</strong></div>
-          <div class="flex gap-2">
-            <button class="page-btn">Previous</button>
-            <button class="page-btn">1</button>
-            <button class="page-btn active">2</button>
-            <button class="page-btn">3</button>
-            <button class="page-btn">Next</button>
-          </div>
         </div>
       </div>
-    </main>
-  </div>
 
-  <!-- Lucide Icon Init -->
+      <!-- Pagination -->
+      <div class="pagination">
+        <div>Showing <strong>1–3</strong> of <strong>100</strong></div>
+        <div class="flex gap-2">
+          <button class="page-btn">Previous</button>
+          <button class="page-btn">1</button>
+          <button class="page-btn active">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Sheet Section -->
+    <div id="task-sheet-section" style="display: none;">
+      <div class="google-sheet-wrapper">
+        <iframe
+          src="https://docs.google.com/spreadsheets/d/1yR8WCbDazZ8fp67hmdmGoWXjDkcTp3RnyslUWuEVr7E/edit?usp=sharing"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</main>
+
+  <!-- Lucide Init + JS -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     lucide.createIcons();
+
+    function showSection(section) {
+      const table = document.getElementById("task-table-section");
+      const sheet = document.getElementById("task-sheet-section");
+      const buttons = document.querySelectorAll(".toggle-btn");
+
+      buttons.forEach(btn => btn.classList.remove("active"));
+
+      if (section === "table") {
+        table.style.display = "block";
+        sheet.style.display = "none";
+        buttons[0].classList.add("active");
+      } else {
+        table.style.display = "none";
+        sheet.style.display = "block";
+        buttons[1].classList.add("active");
+      }
+    }
   </script>
 </body>
 </html>

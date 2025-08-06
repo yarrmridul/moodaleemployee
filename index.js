@@ -5,7 +5,6 @@ console.log("SMTP_USER:", process.env.SMTP_USER);
 console.log("PORT:", process.env.PORT);
 const session = require("express-session");
 
-
 const fs = require("fs");
 const path = require("path");
 
@@ -35,72 +34,140 @@ app.post("/admin/employee/send-mail/:email", async (req, res) => {
     const [rows] = await connection
       .promise()
       .query("SELECT * FROM employeedata WHERE email = ?", [employeeEmail]);
+
     if (!rows || rows.length === 0) {
       return res.status(404).json({ message: "Employee not found" });
     }
+
     const employee = rows[0];
+const fieldsToCheck = [
+  "department",
+  "role",
+  "city",
+  "gender",
+  "date_of_birth",
+  "contact_number",
+  "address"
+];
 
-    // Ignore these fields
-    const ignoreFields = ["contract_end", "comments"];
-    const missingFields = [];
+const missingFields = fieldsToCheck.filter(field => {
+  return (
+    employee[field] === null ||
+    employee[field] === "" ||
+    employee[field] === undefined
+  );
+});
 
-    // Check for empty required fields
-    for (const key in employee) {
-      if (
-        !ignoreFields.includes(key) &&
-        (employee[key] === null ||
-          employee[key] === "" ||
-          employee[key] === undefined)
-      ) {
-        missingFields.push(key);
-      }
-    }
 
-    // Don't send if everything's filled
-    if (missingFields.length === 0) {
-      return res
-        .status(200)
-        .json({ message: "No missing fields. Email not sent." });
-    }
+    // Format ID like 25MD001
+    const formattedId = `25MD${String(employee.id).padStart(3, "0")}`;
 
-    // Format all details
-    let detailsText = "";
-    for (const key in employee) {
-      detailsText += `${key}: ${employee[key] || "N/A"}\n`;
-    }
-
-    // Format missing field request
-    const missingRequest = missingFields.length
-      ? `We require the following details from your end:\n${missingFields.join(
-          ", "
-        )}\n\n`
-      : "";
+    // Format dates to readable format (e.g. 28 Jul 2025)
+    const formatDate = (date) =>
+      new Date(date).toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      });
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587, // Use TLS
-      secure: false, // MUST be false for port 587
+      port: 587,
+      secure: false,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
     });
 
+
+
     const mailOptions = {
-      from: "moodale2020@gmail.com",
+      from: '"Moodale HR" <moodale2020@gmail.com>',
       to: employee.email,
-      subject: "Moodale Login Credentials & Info Update Request",
-      text: `Hey ${employee.name},\n\nThese are your Moodale login credentials. In case of any query, mail back.
+      subject: "Welcome to Moodale – Your Login Details",
+      
+      html: `
+  <div style="font-family: 'Segoe UI', Tahoma, sans-serif; max-width: 600px; margin: auto; padding: 24px; border: 1px solid #ddd; border-radius: 10px; background-color: #ffffff;">
+    <h2 style="color: #2c3e50;">👋 Hello ${employee.name || "Employee"},</h2>
 
-Email: ${employee.email}
-Pass: ${employee.password}
+    <!-- Section 1: Credentials -->
+    <h3 style="color: #1a73e8;">Login Credentials</h3>
+    <p style="margin-bottom: 12px;">Welcome to <strong>Moodale</strong>! Below are your official login credentials:</p>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+      <tr><td style="padding: 8px;"><strong>Email:</strong></td><td style="padding: 8px;">${
+        employee.email
+      }</td></tr>
+      <tr><td style="padding: 8px;"><strong>Password:</strong></td><td style="padding: 8px;">${
+        employee.password
+      }</td></tr>
+    </table>
 
-And these are your information registered with us. Please let us know if you want to update anything:
+    <!-- Section 2: Personal Details -->
+    <h3 style="color: #1a73e8;">Registered Personal Details</h3>
+    <p style="margin-bottom: 12px;">Please review the following personal information:</p>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+      <tr><td style="padding: 8px;"><strong>Employee ID:</strong></td><td style="padding: 8px;">25MD${String(
+        employee.id
+      ).padStart(3, "0")}</td></tr>
+      <tr><td style="padding: 8px;"><strong>Name:</strong></td><td style="padding: 8px;">${
+        employee.name
+      }</td></tr>
+      <tr><td style="padding: 8px;"><strong>Joining Date:</strong></td><td style="padding: 8px;">${formatDate(
+        employee.joining_date
+      )}</td></tr>
+      <tr><td style="padding: 8px;"><strong>Contract End:</strong></td><td style="padding: 8px;">${
+        employee.contract_end ? formatDate(employee.contract_end) : "-"
+      }</td></tr>
+      <tr><td style="padding: 8px;"><strong>Department:</strong></td><td style="padding: 8px;">${
+        employee.department || "-"
+      }</td></tr>
+      <tr><td style="padding: 8px;"><strong>Role:</strong></td><td style="padding: 8px;">${
+        employee.role || "-"
+      }</td></tr>
+      <tr><td style="padding: 8px;"><strong>City:</strong></td><td style="padding: 8px;">${
+        employee.city || "-"
+      }</td></tr>
+      <tr><td style="padding: 8px;"><strong>Gender:</strong></td><td style="padding: 8px;">${
+        employee.gender || "-"
+      }</td></tr>
+      <tr><td style="padding: 8px;"><strong>Date of Birth:</strong></td><td style="padding: 8px;">${
+        employee.date_of_birth ? formatDate(employee.date_of_birth) : "-"
+      }</td></tr>
+      <tr><td style="padding: 8px;"><strong>Contact Number:</strong></td><td style="padding: 8px;">${
+        employee.contact_number || "-"
+      }</td></tr>
+      <tr><td style="padding: 8px;"><strong>Address:</strong></td><td style="padding: 8px;">${
+        employee.address || "-"
+      }</td></tr>
+    </table>
 
-${detailsText}
+    <!-- Section 3: Missing Fields -->
+    ${
+      missingFields.length > 0
+        ? `
+      <h3 style="color: #d93025;">Action Required: Missing Information</h3>
+      <p>We still need the following details from your end:</p>
+      <ul style="padding-left: 20px; margin-bottom: 20px;">
+        ${missingFields.map((field) => `<li>${field}</li>`).join("")}
+      </ul>
+    `
+        : ""
+    }
 
-${missingRequest}Thanks,  
-Moodale`,
+    <!-- Login Button -->
+    <div style="text-align: center; margin: 30px 0;">
+      <a href="https://moodaleadmin.onrender.com" target="_blank" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold;">Click to Login</a>
+    </div>
+
+    <!-- Final Note -->
+    <p style="font-size: 14px; color: #555;">
+      If you'd like to update or correct any detail mentioned above, feel free to reply to this email. We're happy to assist!
+    </p>
+
+    <p style="margin-top: 30px;">Best regards,<br><strong>Moodale HR Team</strong></p>
+  </div>
+`,
     };
 
     await transporter.sendMail(mailOptions);
@@ -170,9 +237,8 @@ app.post("/adminlogin", (req, res) => {
     connection.query(q, [formmail, formpass], (err, results) => {
       if (err) throw err;
       if (results.length === 0) {
-       // return res.send("Invalid credentials"); // no matching user found
+        // return res.send("Invalid credentials"); // no matching user found
         return res.render("login", { error: "Invalid email or password" });
-
       }
       let user = results[0];
 
@@ -180,9 +246,8 @@ app.post("/adminlogin", (req, res) => {
       if (formmail === user.email && formpass === user.password) {
         res.render("adminindex.ejs", { user });
       } else {
-      //  res.send("Invalid credentials");
-              res.render("login", { error: "Invalid email or password" });
-
+        //  res.send("Invalid credentials");
+        res.render("login", { error: "Invalid email or password" });
       }
     });
   } catch (error) {
@@ -374,8 +439,6 @@ app.get("/admin/employee/all", async (req, res) => {
 });
 //
 
-
-
 //=========================================================employee portal==================================================================
 
 app.get("/emplogin", (req, res) => {
@@ -390,10 +453,9 @@ app.get("/emp", async (req, res) => {
 
   try {
     // ✅ Fetch employee based on session email
-    const [users] = await connection.promise().query(
-      "SELECT * FROM employeedata WHERE email = ?",
-      [req.session.email]
-    );
+    const [users] = await connection
+      .promise()
+      .query("SELECT * FROM employeedata WHERE email = ?", [req.session.email]);
 
     if (!users || users.length === 0) {
       console.warn("No employee found for session email:", req.session.email);
@@ -435,15 +497,16 @@ app.get("/emp", async (req, res) => {
   }
 });
 
-
 app.post("/emplogin", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const [users] = await connection.promise().query(
-      "SELECT * FROM employeedata WHERE email = ? AND password = ?",
-      [email, password]
-    );
+    const [users] = await connection
+      .promise()
+      .query("SELECT * FROM employeedata WHERE email = ? AND password = ?", [
+        email,
+        password,
+      ]);
 
     if (users.length === 0) {
       return res.render("elogin.ejs", {
@@ -463,8 +526,6 @@ app.post("/emplogin", async (req, res) => {
     });
   }
 });
-
-
 
 app.get("/emp/meeting", (req, res) => {
   res.render("empmeeting.ejs", {
@@ -488,23 +549,22 @@ app.get("/emp/meeting", (req, res) => {
 });
 
 app.get("/emp/leave", (req, res) => {
-res.render('empleave.ejs', {
-  leaves: [
-    {
-      start: '2025-08-01',
-      end: '2025-08-03',
-      type: 'Sick',
-      status: 'Approved',
-      submitted: '2025-07-28'
-    },
-    {
-      start: '2025-08-10',
-      end: '2025-08-12',
-      type: 'Casual',
-      status: 'Pending',
-      submitted: '2025-07-29'
-    }
-  ]
+  res.render("empleave.ejs", {
+    leaves: [
+      {
+        start: "2025-08-01",
+        end: "2025-08-03",
+        type: "Sick",
+        status: "Approved",
+        submitted: "2025-07-28",
+      },
+      {
+        start: "2025-08-10",
+        end: "2025-08-12",
+        type: "Casual",
+        status: "Pending",
+        submitted: "2025-07-29",
+      },
+    ],
+  });
 });
-});
-
